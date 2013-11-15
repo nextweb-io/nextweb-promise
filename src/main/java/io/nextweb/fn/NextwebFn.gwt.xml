@@ -3,8 +3,6 @@
 <module rename-to="nextwebfn">
 	<inherits name="com.google.gwt.user.User" />
 	
-	<!-- <inherits name='org.timepedia.exporter.Exporter'/>
-  	<set-property name="export" value="yes"/> -->
   	
   	<entry-point class='io.nextweb.fn.internal.DummyEntryPoint'/>
   	
