@@ -8,7 +8,7 @@ public abstract class SuccessFail {
 
 	public abstract Throwable getException();
 
-	public static final SuccessFail SUCCESS = new SuccessFail() {
+	private static final SuccessFail SUCCESS = new SuccessFail() {
 
 		@Override
 		public boolean isSuccess() {
