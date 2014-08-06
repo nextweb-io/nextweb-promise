@@ -1,5 +1,6 @@
 package io.nextweb.fn;
 
+import de.mxro.fn.Closure;
 import io.nextweb.fn.callbacks.Callback;
 import io.nextweb.fn.exceptions.ExceptionManager;
 

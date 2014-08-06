@@ -1,5 +1,6 @@
 package io.nextweb.fn;
 
+import de.mxro.fn.Closure;
 import io.nextweb.fn.exceptions.ExceptionResult;
 
 public class Fn {
