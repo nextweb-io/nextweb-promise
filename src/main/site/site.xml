@@ -4,10 +4,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
 	<bannerLeft>
-		<name>mxro - Open Source</name>
-		<src>http://modules.appjangle.com/mxro_small.png</src>
-		<href>http://www.mxro.de</href>
+
+		<name>Nextweb.io JavaScript API</name>
+		<!-- <src>http://u1.linnk.it/0fs7dr/Apps1/appjangle/appjangle_logo_01.value.png</src> -->
+		<href>http://nextweb.io</href>
+
 	</bannerLeft>
+
 
 	<skin>
 		<groupId>org.apache.maven.skins</groupId>
@@ -19,7 +22,7 @@
 
 			<topBarEnabled>false</topBarEnabled>
 			<sideBarEnabled>true</sideBarEnabled>
-			
+
 		</fluidoSkin>
 	</custom>
 
