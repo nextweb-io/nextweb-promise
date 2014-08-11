@@ -16,7 +16,7 @@ import io.nextweb.promise.exceptions.ExceptionManager;
  * 
  * @param <ResultType>
  */
-public interface BasicResult<ResultType> extends Deferred<ResultType> {
+public interface BasicPromise<ResultType> extends Deferred<ResultType> {
 
 	/**
 	 * get() will ignore all defined exception interceptors to assure
