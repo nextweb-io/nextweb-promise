@@ -1,6 +1,6 @@
-package io.nextweb.fn;
+package io.nextweb.promise;
 
-import io.nextweb.fn.callbacks.Callback;
+import io.nextweb.promise.callbacks.Callback;
 
 
 

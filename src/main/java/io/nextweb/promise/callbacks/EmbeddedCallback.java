@@ -1,10 +1,10 @@
-package io.nextweb.fn.callbacks;
+package io.nextweb.promise.callbacks;
 
-import io.nextweb.fn.exceptions.ExceptionManager;
-import io.nextweb.fn.exceptions.ExceptionResult;
-import io.nextweb.fn.exceptions.ImpossibleResult;
-import io.nextweb.fn.exceptions.UnauthorizedResult;
-import io.nextweb.fn.exceptions.UndefinedResult;
+import io.nextweb.promise.exceptions.ExceptionManager;
+import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.ImpossibleResult;
+import io.nextweb.promise.exceptions.UnauthorizedResult;
+import io.nextweb.promise.exceptions.UndefinedResult;
 
 public class EmbeddedCallback<ResultType> implements Callback<ResultType> {
 

@@ -1,7 +1,7 @@
-package io.nextweb.fn.exceptions;
+package io.nextweb.promise.exceptions;
 
 
-import io.nextweb.fn.Fn;
+import io.nextweb.promise.Fn;
 
 
 

@@ -1,9 +1,9 @@
-package io.nextweb.fn.callbacks;
+package io.nextweb.promise.callbacks;
 
-import io.nextweb.fn.exceptions.ExceptionListener;
-import io.nextweb.fn.exceptions.ImpossibleListener;
-import io.nextweb.fn.exceptions.UnauthorizedListener;
-import io.nextweb.fn.exceptions.UndefinedListener;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ImpossibleListener;
+import io.nextweb.promise.exceptions.UnauthorizedListener;
+import io.nextweb.promise.exceptions.UndefinedListener;
 
 
 public interface Callback<ResultType> extends ExceptionListener,

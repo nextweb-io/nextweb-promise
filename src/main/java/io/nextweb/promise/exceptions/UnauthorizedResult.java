@@ -1,4 +1,4 @@
-package io.nextweb.fn.exceptions;
+package io.nextweb.promise.exceptions;
 
 public interface UnauthorizedResult {
 

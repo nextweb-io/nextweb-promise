@@ -1,7 +1,7 @@
-package io.nextweb.fn;
+package io.nextweb.promise;
 
 import de.mxro.fn.Closure;
-import io.nextweb.fn.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.ExceptionResult;
 
 public class Fn {
 

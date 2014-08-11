@@ -1,4 +1,4 @@
-package io.nextweb.fn;
+package io.nextweb.promise;
 
 public interface ResultFactory<ResultType> {
 

@@ -1,6 +1,6 @@
-package io.nextweb.fn;
+package io.nextweb.promise;
 
-import io.nextweb.fn.exceptions.AllInterceptor;
+import io.nextweb.promise.exceptions.AllInterceptor;
 
 
 

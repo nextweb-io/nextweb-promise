@@ -1,8 +1,8 @@
-package io.nextweb.fn;
+package io.nextweb.promise;
 
 import de.mxro.fn.Closure;
-import io.nextweb.fn.callbacks.Callback;
-import io.nextweb.fn.exceptions.ExceptionManager;
+import io.nextweb.promise.callbacks.Callback;
+import io.nextweb.promise.exceptions.ExceptionManager;
 
 
 
