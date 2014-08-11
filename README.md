@@ -1,9 +1,11 @@
-nextweb-fn
+nextweb-promise
 ==========
 
-Utilities for building asynchronous frameworks.
+An implementation of promises for the Nextweb API.
 
-See
+## See
 
 - [Nextweb API](http://nextweb.io)
-- [JavaDoc]()
+- [JavaDoc](http://modules.appjangle.com/nextweb-promise/latest/apidocs/index.html)
+- [Dependencies](http://modules.appjangle.com/nextweb-promise/latest/dependencies.html)
+- [Maven Project Reports](http://modules.appjangle.com/nextweb-promise/latest/project-reports.html)
