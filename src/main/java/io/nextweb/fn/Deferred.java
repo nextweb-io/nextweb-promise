@@ -4,7 +4,7 @@ import io.nextweb.fn.callbacks.Callback;
 
 
 
-public interface AsyncResult<ResultType> {
+public interface Deferred<ResultType> {
 
 	public void get(Callback<ResultType> callback);
 

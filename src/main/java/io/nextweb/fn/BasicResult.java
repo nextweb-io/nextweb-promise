@@ -16,7 +16,7 @@ import io.nextweb.fn.exceptions.ExceptionManager;
  * 
  * @param <ResultType>
  */
-public interface BasicResult<ResultType> extends AsyncResult<ResultType> {
+public interface BasicResult<ResultType> extends Deferred<ResultType> {
 
 	/**
 	 * get() will ignore all defined exception interceptors to assure
@@ -33,6 +33,6 @@ public interface BasicResult<ResultType> extends AsyncResult<ResultType> {
 	@Override
 	public void get(Callback<ResultType> callback);
 
-	public AsyncResult<ResultType> getDecoratedResult();
+	public Deferred<ResultType> getDecoratedResult();
 
 }
