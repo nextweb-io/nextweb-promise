@@ -443,14 +443,16 @@
 				<role>developer</role>
 			</roles>
 			<timezone>+12</timezone>
+			<organization>pureleap</organization>
+			<organizationUrl>http://pureleap.com</organizationUrl>
 			<!-- <properties> <picUrl>http://tinyurl.com/prv4t</picUrl> </properties> -->
 		</developer>
 	</developers>
 
 	<scm>
-		<connection>scm:git:git@github.com:nextweb-io/nextweb-fn.git</connection>
-		<url>https://github.com/nextweb-io/nextweb-fn</url>
-		<developerConnection>scm:git:git@github.com:nextweb-io/nextweb-fn.git
+		<connection>scm:git:git@github.com:nextweb-io/nextweb-promise.git</connection>
+		<url>https://github.com/nextweb-io/nextweb-promise</url>
+		<developerConnection>scm:git:git@github.com:nextweb-io/nextweb-promise.git
 		</developerConnection>
 	</scm>
 
