@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>io.nextweb.promise</groupId>
 	<artifactId>nextweb-promise</artifactId>
-	<version>0.1.2</version>
+	<version>0.1.3-SNAPSHOT</version>
 	<description>Implementation of asynchronous promises for Nextweb API.</description>
 	<url>https://github.com/nextweb-io/nextweb-promise</url>
 	<properties>
