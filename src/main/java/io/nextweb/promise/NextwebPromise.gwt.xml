@@ -4,9 +4,8 @@
 	<inherits name="com.google.gwt.user.User" />
 	
 	<inherits name="de.mxro.fn.Fn" />
-	
-  	
-  	<entry-point class='io.nextweb.fn.internal.DummyEntryPoint'/>
+		
+  	<entry-point class='io.nextweb.promise.internal.DummyEntryPoint'/>
   	
 	<source path='' >
 
