@@ -4,6 +4,10 @@
 	<inherits name="com.google.gwt.user.User" />
 	
 	<inherits name="de.mxro.fn.Fn" />
+	
+	<inherits name="de.mxro.factories.Factories" />
+	
+	<inherits name="de.mxro.service.Service" />
 		
   	<entry-point class='io.nextweb.promise.internal.DummyEntryPoint'/>
   	
