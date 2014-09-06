@@ -33,6 +33,8 @@
 			<version>[0.0.1,)</version>
 		</dependency>
 
+		
+
 		<!-- only for gwt maven plugin!!! -->
 		<dependency>
 			<groupId>de.mxro.thrd.gwtuser24</groupId>
@@ -223,7 +225,7 @@
 				</executions>
 			</plugin>
 
-			
+
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -413,7 +415,7 @@
 
 
 
-	
+
 
 
 	<developers>
