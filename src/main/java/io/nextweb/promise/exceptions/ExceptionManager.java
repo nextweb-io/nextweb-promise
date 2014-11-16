@@ -74,7 +74,7 @@ public class ExceptionManager implements ExceptionInterceptor<ExceptionManager>,
 
     @Override
     public void onUnauthorized(final UnauthorizedResult r) {
-        assert canCatchAuthorizationExceptions() || canCatchExceptions();
+        // assert canCatchAuthorizationExceptions() || canCatchExceptions();
 
         if (this.authExceptionListener != null) {
             this.authExceptionListener.onUnauthorized(r);
@@ -137,7 +137,7 @@ public class ExceptionManager implements ExceptionInterceptor<ExceptionManager>,
 
     @Override
     public void onUndefined(final UndefinedResult r) {
-        assert canCatchUndefinedExceptions() || canCatchExceptions();
+        // assert canCatchUndefinedExceptions() || canCatchExceptions();
 
         if (this.undefinedExceptionListener != null) {
             this.undefinedExceptionListener.onUndefined(r);
