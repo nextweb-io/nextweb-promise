@@ -1,187 +1,168 @@
 package io.nextweb.promise.exceptions;
 
-
 import io.nextweb.promise.Fn;
 
+public class ExceptionManager implements ExceptionInterceptor<ExceptionManager>,
+        UnauthorizedInterceptor<ExceptionManager>, ExceptionListener, UnauthorizedListener, UndefinedListener,
+        ImpossibleListener, ImpossibleInterceptor<ExceptionManager>, UndefinedInterceptor<ExceptionManager> {
 
+    public static ExceptionManager fallbackExceptionManager;
 
-public class ExceptionManager implements
-		ExceptionInterceptor<ExceptionManager>,
-		UnauthorizedInterceptor<ExceptionManager>, ExceptionListener,
-		UnauthorizedListener, UndefinedListener, ImpossibleListener,
-		ImpossibleInterceptor<ExceptionManager>,
-		UndefinedInterceptor<ExceptionManager> {
+    private UnauthorizedListener authExceptionListener;
+    private ExceptionListener exceptionListener;
+    private UndefinedListener undefinedExceptionListener;
+    private ImpossibleListener impossibleListener;
 
-	public static ExceptionManager fallbackExceptionManager;
-	
-	private UnauthorizedListener authExceptionListener;
-	private ExceptionListener exceptionListener;
-	private UndefinedListener undefinedExceptionListener;
-	private ImpossibleListener impossibleListener;
+    private final ExceptionManager parentExceptionManager;
 
-	private final ExceptionManager parentExceptionManager;
+    @Override
+    public ExceptionManager catchUnauthorized(final UnauthorizedListener authExceptionListener) {
+        this.authExceptionListener = authExceptionListener;
+        return this;
+    }
 
-	@Override
-	public ExceptionManager catchUnauthorized(
-			final UnauthorizedListener authExceptionListener) {
-		this.authExceptionListener = authExceptionListener;
-		return this;
-	}
+    @Override
+    public ExceptionManager catchExceptions(final ExceptionListener exceptionListener) {
+        this.exceptionListener = exceptionListener;
+        return this;
+    }
 
-	@Override
-	public ExceptionManager catchExceptions(
-			final ExceptionListener exceptionListener) {
-		this.exceptionListener = exceptionListener;
-		return this;
-	}
+    public boolean canCatchExceptions() {
+        return this.exceptionListener != null
+                || (this.parentExceptionManager != null && this.parentExceptionManager.canCatchExceptions());
 
-	public boolean canCatchExceptions() {
-		return this.exceptionListener != null
-				|| (this.parentExceptionManager != null && this.parentExceptionManager
-						.canCatchExceptions());
+    }
 
-	}
+    public boolean canCatchUndefinedExceptions() {
+        return this.undefinedExceptionListener != null || canCatchExceptions()
+                || (this.parentExceptionManager != null && this.parentExceptionManager.canCatchUndefinedExceptions());
 
-	public boolean canCatchUndefinedExceptions() {
-		return this.undefinedExceptionListener != null
-				|| canCatchExceptions()
-				|| (this.parentExceptionManager != null && this.parentExceptionManager
-						.canCatchUndefinedExceptions());
+    }
 
-	}
+    public boolean canCatchAuthorizationExceptions() {
+        return this.authExceptionListener != null
+                || canCatchExceptions()
+                || (this.parentExceptionManager != null && this.parentExceptionManager
+                        .canCatchAuthorizationExceptions());
 
-	public boolean canCatchAuthorizationExceptions() {
-		return this.authExceptionListener != null
-				|| canCatchExceptions()
-				|| (this.parentExceptionManager != null && this.parentExceptionManager
-						.canCatchAuthorizationExceptions());
+    }
 
-	}
+    public boolean canCatchImpossibe() {
+        return this.impossibleListener != null || canCatchExceptions()
+                || (this.parentExceptionManager != null && this.parentExceptionManager.canCatchImpossibe());
+    }
 
-	public boolean canCatchImpossibe() {
-		return this.impossibleListener != null
-				|| canCatchExceptions()
-				|| (this.parentExceptionManager != null && this.parentExceptionManager
-						.canCatchImpossibe());
-	}
+    @Override
+    public void onFailure(final ExceptionResult r) {
+        // assert canCatchExceptions();
 
-	@Override
-	public void onFailure(final ExceptionResult r) {
-		// assert canCatchExceptions();
+        if (this.exceptionListener != null) {
+            this.exceptionListener.onFailure(r);
+            return;
+        }
 
-		if (this.exceptionListener != null) {
-			this.exceptionListener.onFailure(r);
-			return;
-		}
+        if (this.parentExceptionManager != null) {
+            if (this.parentExceptionManager.canCatchExceptions()) {
+                this.parentExceptionManager.onFailure(r);
+                return;
+            }
+        }
 
-		if (this.parentExceptionManager != null) {
-			if (this.parentExceptionManager.canCatchExceptions()) {
-				this.parentExceptionManager.onFailure(r);
-				return;
-			}
-		}
-		
-		fallbackExceptionManager.onFailure(r);
-		
-	}
+        fallbackExceptionManager.onFailure(r);
 
-	@Override
-	public void onUnauthorized(final UnauthorizedResult r) {
-		assert canCatchAuthorizationExceptions() || canCatchExceptions();
+    }
 
-		if (this.authExceptionListener != null) {
-			this.authExceptionListener.onUnauthorized(r);
-			return;
-		}
+    @Override
+    public void onUnauthorized(final UnauthorizedResult r) {
+        assert canCatchAuthorizationExceptions() || canCatchExceptions();
 
-		if (this.exceptionListener != null) {
-			this.exceptionListener.onFailure(Fn.exception(r.origin(),
-					new Exception("Unauthorized: " + r.getMessage())));
-			return;
-		}
+        if (this.authExceptionListener != null) {
+            this.authExceptionListener.onUnauthorized(r);
+            return;
+        }
 
-		if (this.parentExceptionManager != null) {
-			if (this.parentExceptionManager.canCatchAuthorizationExceptions()) {
-				this.parentExceptionManager.onUnauthorized(r);
-				return;
-			}
-		}
+        if (this.exceptionListener != null) {
+            this.exceptionListener
+                    .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
+            return;
+        }
 
-		onFailure(Fn.exception(r.origin(),
-				new Exception("Unauthorized: " + r.getMessage())));
-	}
+        if (this.parentExceptionManager != null) {
+            if (this.parentExceptionManager.canCatchAuthorizationExceptions()) {
+                this.parentExceptionManager.onUnauthorized(r);
+                return;
+            }
+        }
 
-	@Override
-	public void onImpossible(final ImpossibleResult ir) {
-		assert canCatchImpossibe() || canCatchExceptions();
+        onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
+    }
 
-		if (this.impossibleListener != null) {
-			this.impossibleListener.onImpossible(ir);
-			return;
-		}
+    @Override
+    public void onImpossible(final ImpossibleResult ir) {
+        // assert canCatchImpossibe() || canCatchExceptions();
 
-		if (this.exceptionListener != null) {
-			this.exceptionListener.onFailure(Fn.exception(ir.origin(),
-					new Exception("Operation impossible: [" + ir.message()
-							+ "]")));
-			return;
-		}
+        if (this.impossibleListener != null) {
+            this.impossibleListener.onImpossible(ir);
+            return;
+        }
 
-		if (this.parentExceptionManager != null) {
-			if (this.parentExceptionManager.canCatchImpossibe()) {
-				this.parentExceptionManager.onImpossible(ir);
-				return;
-			}
-		}
+        if (this.exceptionListener != null) {
+            this.exceptionListener.onFailure(Fn.exception(ir.origin(),
+                    new Exception("Operation impossible: [" + ir.message() + "]")));
+            return;
+        }
 
-		onFailure(Fn.exception(ir.origin(), new Exception(
-				"Operation impossible: [" + ir.message() + "]")));
-	}
+        if (this.parentExceptionManager != null) {
+            if (this.parentExceptionManager.canCatchImpossibe()) {
+                this.parentExceptionManager.onImpossible(ir);
+                return;
+            }
+        }
 
-	@Override
-	public ExceptionManager catchImpossible(final ImpossibleListener listener) {
+        onFailure(Fn.exception(ir.origin(), new Exception("Operation impossible: [" + ir.message() + "]")));
+    }
 
-		this.impossibleListener = listener;
-		return this;
-	}
+    @Override
+    public ExceptionManager catchImpossible(final ImpossibleListener listener) {
 
-	@Override
-	public ExceptionManager catchUndefined(
-			final UndefinedListener undefinedExceptionListener) {
-		this.undefinedExceptionListener = undefinedExceptionListener;
-		return this;
-	}
+        this.impossibleListener = listener;
+        return this;
+    }
 
-	@Override
-	public void onUndefined(final UndefinedResult r) {
-		assert canCatchUndefinedExceptions() || canCatchExceptions();
+    @Override
+    public ExceptionManager catchUndefined(final UndefinedListener undefinedExceptionListener) {
+        this.undefinedExceptionListener = undefinedExceptionListener;
+        return this;
+    }
 
-		if (this.undefinedExceptionListener != null) {
-			this.undefinedExceptionListener.onUndefined(r);
-			return;
-		}
+    @Override
+    public void onUndefined(final UndefinedResult r) {
+        assert canCatchUndefinedExceptions() || canCatchExceptions();
 
-		if (this.exceptionListener != null) {
-			this.exceptionListener.onFailure(Fn.exception(r.origin(),
-					new Exception("Undefined: " + r.message())));
-			return;
-		}
+        if (this.undefinedExceptionListener != null) {
+            this.undefinedExceptionListener.onUndefined(r);
+            return;
+        }
 
-		if (this.parentExceptionManager != null) {
-			if (this.parentExceptionManager.canCatchUndefinedExceptions()) {
-				this.parentExceptionManager.onUndefined(r);
-				return;
-			}
-		}
+        if (this.exceptionListener != null) {
+            this.exceptionListener.onFailure(Fn.exception(r.origin(), new Exception("Undefined: " + r.message())));
+            return;
+        }
 
-		onFailure(Fn.exception(r.origin(),
-				new Exception("Undefined: " + r.message())));
-	}
+        if (this.parentExceptionManager != null) {
+            if (this.parentExceptionManager.canCatchUndefinedExceptions()) {
+                this.parentExceptionManager.onUndefined(r);
+                return;
+            }
+        }
 
-	public ExceptionManager(final ExceptionManager parentExceptionManager) {
-		super();
-		this.parentExceptionManager = parentExceptionManager;
+        onFailure(Fn.exception(r.origin(), new Exception("Undefined: " + r.message())));
+    }
 
-	}
+    public ExceptionManager(final ExceptionManager parentExceptionManager) {
+        super();
+        this.parentExceptionManager = parentExceptionManager;
+
+    }
 
 }
