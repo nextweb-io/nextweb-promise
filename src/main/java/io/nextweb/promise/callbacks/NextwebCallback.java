@@ -5,18 +5,23 @@ import io.nextweb.promise.exceptions.ImpossibleListener;
 import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UndefinedListener;
 
+public interface NextwebCallback<ResultType> extends ExceptionListener, UnauthorizedListener, UndefinedListener,
+        ImpossibleListener {
 
-public interface NextwebCallback<ResultType> extends ExceptionListener,
-		UnauthorizedListener, UndefinedListener, ImpossibleListener {
+    public void onSuccess(ResultType result);
 
-	public void onSuccess(ResultType result);
+    public boolean hasEagerFailureListener();
 
-	public boolean hasEagerFailureListener();
+    public boolean hasEagerUndefinedListener();
 
-	public boolean hasEagerUndefinedListener();
+    public boolean hasEagerUnauthorizedListener();
 
-	public boolean hasEagerUnauthorizedListener();
+    public boolean hasEagerImpossibleListener();
 
-	public boolean hasEagerImpossibleListener();
+    /**
+     * 
+     * @return True if any listener defined.
+     */
+    public boolean hasEagerListeners();
 
 }
