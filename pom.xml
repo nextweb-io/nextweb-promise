@@ -24,12 +24,13 @@
 
 	<!-- Dependent Modules -->
 	<dependencies>
-
+		
 		<dependency>
-			<groupId>de.mxro.async</groupId>
-			<artifactId>async-api</artifactId>
-			<version>0.0.8</version>
+			<groupId>de.mxro.promise</groupId>
+			<artifactId>java-promise</artifactId>
+			<version>[0.0.1,)</version>
 		</dependency>
+		
 
 		
 
