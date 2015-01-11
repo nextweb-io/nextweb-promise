@@ -31,7 +31,7 @@ public interface BasicPromise<ResultType> extends NextwebOperation<ResultType> {
 	public ExceptionManager getExceptionManager();
 
 	@Override
-	public void apply(Callback<ResultType> callback);
+	public void get(Callback<ResultType> callback);
 
 	public NextwebOperation<ResultType> getDecoratedResult();
 
