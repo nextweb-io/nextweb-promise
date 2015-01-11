@@ -1,6 +1,6 @@
 package io.nextweb.promise.callbacks;
 
-import io.nextweb.promise.exceptions.ExceptionManager;
+import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleResult;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
@@ -9,7 +9,7 @@ import io.nextweb.promise.exceptions.UndefinedResult;
 public class EmbeddedCallback<ResultType> implements Callback<ResultType> {
 
 	private final Callback<Object> embeddedIn;
-	private final ExceptionManager exceptionManager;
+	private final NextwebExceptionManager exceptionManager;
 
 	@Override
 	public void onUndefined(UndefinedResult r) {
@@ -100,7 +100,7 @@ public class EmbeddedCallback<ResultType> implements Callback<ResultType> {
 	}
 
 	public EmbeddedCallback(Callback<Object> embeddedIn,
-			ExceptionManager exceptionManager) {
+			NextwebExceptionManager exceptionManager) {
 		super();
 		this.embeddedIn = embeddedIn;
 		this.exceptionManager = exceptionManager;

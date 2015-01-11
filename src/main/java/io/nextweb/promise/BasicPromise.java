@@ -2,7 +2,7 @@ package io.nextweb.promise;
 
 import de.mxro.fn.Closure;
 import io.nextweb.promise.callbacks.Callback;
-import io.nextweb.promise.exceptions.ExceptionManager;
+import io.nextweb.promise.exceptions.NextwebExceptionManager;
 
 
 
@@ -28,7 +28,7 @@ public interface BasicPromise<ResultType> extends NextwebOperation<ResultType> {
 
 	public void get(Closure<ResultType> callback);
 
-	public ExceptionManager getExceptionManager();
+	public NextwebExceptionManager getExceptionManager();
 
 	@Override
 	public void apply(Callback<ResultType> callback);

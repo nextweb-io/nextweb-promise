@@ -2,27 +2,27 @@ package io.nextweb.promise.exceptions;
 
 import io.nextweb.promise.Fn;
 
-public class ExceptionManager implements ExceptionInterceptor<ExceptionManager>,
-        UnauthorizedInterceptor<ExceptionManager>, ExceptionListener, UnauthorizedListener, UndefinedListener,
-        ImpossibleListener, ImpossibleInterceptor<ExceptionManager>, UndefinedInterceptor<ExceptionManager> {
+public class NextwebExceptionManager implements ExceptionInterceptor<NextwebExceptionManager>,
+        UnauthorizedInterceptor<NextwebExceptionManager>, ExceptionListener, UnauthorizedListener, UndefinedListener,
+        ImpossibleListener, ImpossibleInterceptor<NextwebExceptionManager>, UndefinedInterceptor<NextwebExceptionManager> {
 
-    public static ExceptionManager fallbackExceptionManager;
+    public static NextwebExceptionManager fallbackExceptionManager;
 
     private UnauthorizedListener authExceptionListener;
     private ExceptionListener exceptionListener;
     private UndefinedListener undefinedExceptionListener;
     private ImpossibleListener impossibleListener;
 
-    private final ExceptionManager parentExceptionManager;
+    private final NextwebExceptionManager parentExceptionManager;
 
     @Override
-    public ExceptionManager catchUnauthorized(final UnauthorizedListener authExceptionListener) {
+    public NextwebExceptionManager catchUnauthorized(final UnauthorizedListener authExceptionListener) {
         this.authExceptionListener = authExceptionListener;
         return this;
     }
 
     @Override
-    public ExceptionManager catchExceptions(final ExceptionListener exceptionListener) {
+    public NextwebExceptionManager catchExceptions(final ExceptionListener exceptionListener) {
         this.exceptionListener = exceptionListener;
         return this;
     }
@@ -123,14 +123,14 @@ public class ExceptionManager implements ExceptionInterceptor<ExceptionManager>,
     }
 
     @Override
-    public ExceptionManager catchImpossible(final ImpossibleListener listener) {
+    public NextwebExceptionManager catchImpossible(final ImpossibleListener listener) {
 
         this.impossibleListener = listener;
         return this;
     }
 
     @Override
-    public ExceptionManager catchUndefined(final UndefinedListener undefinedExceptionListener) {
+    public NextwebExceptionManager catchUndefined(final UndefinedListener undefinedExceptionListener) {
         this.undefinedExceptionListener = undefinedExceptionListener;
         return this;
     }
@@ -159,7 +159,7 @@ public class ExceptionManager implements ExceptionInterceptor<ExceptionManager>,
         onFailure(Fn.exception(r.origin(), new Exception("Undefined: " + r.message())));
     }
 
-    public ExceptionManager(final ExceptionManager parentExceptionManager) {
+    public NextwebExceptionManager(final NextwebExceptionManager parentExceptionManager) {
         super();
         this.parentExceptionManager = parentExceptionManager;
 
