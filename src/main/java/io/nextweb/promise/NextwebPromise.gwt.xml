@@ -5,6 +5,8 @@
 	
 	<inherits name="de.mxro.fn.Fn" />
 	
+	<inherits name="de.mxro.promise.Promise" />
+	
 	<inherits name="de.mxro.factories.Factories" />
 	
 	<inherits name="de.mxro.service.Service" />
