@@ -13,8 +13,6 @@ public class UndefinedException extends Throwable {
 
     public UndefinedResult getResult() {
         return result;
-    }t;
-
-
+    };
 
 }
