@@ -31,7 +31,7 @@ public interface BasicPromise<ResultType> extends Deferred<ResultType> {
 	public ExceptionManager getExceptionManager();
 
 	@Override
-	public void get(Callback<ResultType> callback);
+	public void apply(Callback<ResultType> callback);
 
 	public Deferred<ResultType> getDecoratedResult();
 
