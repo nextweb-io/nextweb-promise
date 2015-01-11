@@ -3,9 +3,9 @@ package io.nextweb.promise.exceptions;
 import io.nextweb.promise.Fn;
 
 public class NextwebExceptionManager implements ExceptionInterceptor<NextwebExceptionManager>,
-UnauthorizedInterceptor<NextwebExceptionManager>, ExceptionListener, UnauthorizedListener, UndefinedListener,
-ImpossibleListener, ImpossibleInterceptor<NextwebExceptionManager>,
-        UndefinedInterceptor<NextwebExceptionManager> {
+        UnauthorizedInterceptor<NextwebExceptionManager>, ExceptionListener, UnauthorizedListener, UndefinedListener,
+        ImpossibleListener, ImpossibleInterceptor<NextwebExceptionManager>,
+UndefinedInterceptor<NextwebExceptionManager> {
 
     public static NextwebExceptionManager fallbackExceptionManager;
 
@@ -44,7 +44,7 @@ ImpossibleListener, ImpossibleInterceptor<NextwebExceptionManager>,
         return this.authExceptionListener != null
                 || canCatchExceptions()
                 || (this.parentExceptionManager != null && this.parentExceptionManager
-                .canCatchAuthorizationExceptions());
+                        .canCatchAuthorizationExceptions());
 
     }
 
@@ -58,21 +58,20 @@ ImpossibleListener, ImpossibleInterceptor<NextwebExceptionManager>,
         final Throwable o = r.exception();
 
         if (o instanceof ImpossibleException) {
-
             final ImpossibleException ie = (ImpossibleException) o;
-            onImpossible(ir);
+            onImpossible(ie.getResult());
             return;
         }
 
         if (o instanceof UndefinedException) {
             final UndefinedException ue = (UndefinedException) o;
-            exceptionManager.onUndefined(ue.getResult());
+            onUndefined(ue.getResult());
             return;
         }
 
         if (o instanceof UnauthorizedException) {
             final UnauthorizedException ue = (UnauthorizedException) o;
-            exceptionManager.onUnauthorized(ue.getResult());
+            onUnauthorized(ue.getResult());
             return;
 
         }
@@ -104,7 +103,7 @@ ImpossibleListener, ImpossibleInterceptor<NextwebExceptionManager>,
 
         if (this.exceptionListener != null) {
             this.exceptionListener
-            .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
+                    .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
             return;
         }
 
