@@ -6,7 +6,7 @@ import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UndefinedListener;
 
 
-public interface Callback<ResultType> extends ExceptionListener,
+public interface NextwebCallback<ResultType> extends ExceptionListener,
 		UnauthorizedListener, UndefinedListener, ImpossibleListener {
 
 	public void onSuccess(ResultType result);

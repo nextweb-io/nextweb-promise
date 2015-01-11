@@ -6,9 +6,9 @@ import io.nextweb.promise.exceptions.ImpossibleResult;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
 
-public class EmbeddedCallback<ResultType> implements Callback<ResultType> {
+public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType> {
 
-	private final Callback<Object> embeddedIn;
+	private final NextwebCallback<Object> embeddedIn;
 	private final NextwebExceptionManager exceptionManager;
 
 	@Override
@@ -99,7 +99,7 @@ public class EmbeddedCallback<ResultType> implements Callback<ResultType> {
 		return embeddedIn.hasEagerUnauthorizedListener();
 	}
 
-	public EmbeddedCallback(Callback<Object> embeddedIn,
+	public EmbeddedCallback(NextwebCallback<Object> embeddedIn,
 			NextwebExceptionManager exceptionManager) {
 		super();
 		this.embeddedIn = embeddedIn;
