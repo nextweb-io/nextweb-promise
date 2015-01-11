@@ -16,7 +16,7 @@ import io.nextweb.promise.exceptions.ExceptionManager;
  * 
  * @param <ResultType>
  */
-public interface BasicPromise<ResultType> extends Deferred<ResultType> {
+public interface BasicPromise<ResultType> extends NextwebOperation<ResultType> {
 
 	/**
 	 * get() will ignore all defined exception interceptors to assure
@@ -33,6 +33,6 @@ public interface BasicPromise<ResultType> extends Deferred<ResultType> {
 	@Override
 	public void apply(Callback<ResultType> callback);
 
-	public Deferred<ResultType> getDecoratedResult();
+	public NextwebOperation<ResultType> getDecoratedResult();
 
 }
