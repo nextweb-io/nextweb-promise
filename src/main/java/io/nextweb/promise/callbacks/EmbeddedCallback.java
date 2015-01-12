@@ -15,7 +15,7 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
     @Override
     public void onUndefined(final UndefinedResult r) {
 
-        System.out.println("embedded recieved: " + r);
+        // System.out.println("embedded recieved: " + r);
 
         if (hasEagerUndefinedListener()) {
             embeddedIn.onUndefined(r);
