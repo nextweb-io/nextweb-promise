@@ -2,6 +2,7 @@ package io.nextweb.promise;
 
 import io.nextweb.promise.callbacks.NextwebCallback;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import de.mxro.async.Operation;
 import de.mxro.fn.Closure;
 
 /**
@@ -11,7 +12,7 @@ import de.mxro.fn.Closure;
  * 
  * @param <ResultType>
  */
-public interface BasicPromise<ResultType> extends NextwebOperation<ResultType> {
+public interface BasicPromise<ResultType> extends NextwebOperation<ResultType>, Operation<ResultType> {
 
     /**
      * get() will ignore all defined exception interceptors to assure
