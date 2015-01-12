@@ -1,8 +1,10 @@
 package io.nextweb.promise.exceptions;
 
+import io.nextweb.promise.callbacks.NextwebFailureCallback;
+
 public class NextwebExceptionUtils {
 
-    public static <T> boolean nextwebCallbackRequired(final ExceptionResult er, final NextwebExceptionManager callback) {
+    public static <T> boolean nextwebCallbackRequired(final ExceptionResult er, final NextwebFailureCallback callback) {
 
         final Throwable o = er.exception();
 
