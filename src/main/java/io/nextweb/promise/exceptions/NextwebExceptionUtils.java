@@ -5,6 +5,7 @@ import io.nextweb.promise.callbacks.NextwebFailureCallback;
 public class NextwebExceptionUtils {
 
     public static <T> boolean nextwebCallbackRequired(final Throwable o, final NextwebFailureCallback callback) {
+
         if (o instanceof ImpossibleException) {
             final ImpossibleException ie = (ImpossibleException) o;
             callback.onImpossible(ie.getResult());
@@ -34,5 +35,4 @@ public class NextwebExceptionUtils {
         return nextwebCallbackRequired(o, callback);
 
     }
-
 }
