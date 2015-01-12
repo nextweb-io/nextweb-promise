@@ -4,8 +4,8 @@ import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.NextwebFailureCallback;
 
 public class NextwebExceptionManager implements ExceptionInterceptor<NextwebExceptionManager>,
-        UnauthorizedInterceptor<NextwebExceptionManager>, ImpossibleInterceptor<NextwebExceptionManager>,
-UndefinedInterceptor<NextwebExceptionManager>, NextwebFailureCallback {
+UnauthorizedInterceptor<NextwebExceptionManager>, ImpossibleInterceptor<NextwebExceptionManager>,
+        UndefinedInterceptor<NextwebExceptionManager>, NextwebFailureCallback {
 
     public static NextwebExceptionManager fallbackExceptionManager;
 
@@ -44,7 +44,7 @@ UndefinedInterceptor<NextwebExceptionManager>, NextwebFailureCallback {
         return this.authExceptionListener != null
                 || canCatchExceptions()
                 || (this.parentExceptionManager != null && this.parentExceptionManager
-                        .canCatchAuthorizationExceptions());
+                .canCatchAuthorizationExceptions());
 
     }
 
@@ -57,7 +57,7 @@ UndefinedInterceptor<NextwebExceptionManager>, NextwebFailureCallback {
     public void onFailure(final ExceptionResult r) {
 
         if (NextwebExceptionUtils.nextwebCallbackRequired(r, this)) {
-
+            return;
         }
 
         if (this.exceptionListener != null) {
@@ -86,7 +86,7 @@ UndefinedInterceptor<NextwebExceptionManager>, NextwebFailureCallback {
 
         if (this.exceptionListener != null) {
             this.exceptionListener
-                    .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
+            .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
             return;
         }
 

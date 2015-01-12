@@ -3,6 +3,7 @@ package io.nextweb.promise.callbacks;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleResult;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.exceptions.NextwebExceptionUtils;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
 
@@ -30,6 +31,10 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
 
     @Override
     public void onFailure(final ExceptionResult r) {
+        if (NextwebExceptionUtils.nextwebCallbackRequired(r, this)) {
+            return;
+        }
+
         if (hasEagerFailureListener()) {
             embeddedIn.onFailure(r);
             return;
