@@ -1,11 +1,11 @@
 package io.nextweb.promise.exceptions;
 
 import io.nextweb.promise.Fn;
+import io.nextweb.promise.callbacks.NextwebCallback;
 
 public class NextwebExceptionManager implements ExceptionInterceptor<NextwebExceptionManager>,
-        UnauthorizedInterceptor<NextwebExceptionManager>, ExceptionListener, UnauthorizedListener, UndefinedListener,
-        ImpossibleListener, ImpossibleInterceptor<NextwebExceptionManager>,
-UndefinedInterceptor<NextwebExceptionManager> {
+UnauthorizedInterceptor<NextwebExceptionManager>, ImpossibleInterceptor<NextwebExceptionManager>,
+        UndefinedInterceptor<NextwebExceptionManager>, NextwebCallback<Object> {
 
     public static NextwebExceptionManager fallbackExceptionManager;
 
@@ -44,7 +44,7 @@ UndefinedInterceptor<NextwebExceptionManager> {
         return this.authExceptionListener != null
                 || canCatchExceptions()
                 || (this.parentExceptionManager != null && this.parentExceptionManager
-                        .canCatchAuthorizationExceptions());
+                .canCatchAuthorizationExceptions());
 
     }
 
@@ -55,24 +55,8 @@ UndefinedInterceptor<NextwebExceptionManager> {
 
     @Override
     public void onFailure(final ExceptionResult r) {
-        final Throwable o = r.exception();
 
-        if (o instanceof ImpossibleException) {
-            final ImpossibleException ie = (ImpossibleException) o;
-            onImpossible(ie.getResult());
-            return;
-        }
-
-        if (o instanceof UndefinedException) {
-            final UndefinedException ue = (UndefinedException) o;
-            onUndefined(ue.getResult());
-            return;
-        }
-
-        if (o instanceof UnauthorizedException) {
-            final UnauthorizedException ue = (UnauthorizedException) o;
-            onUnauthorized(ue.getResult());
-            return;
+        if (NextwebExceptionUtils.nextwebCallbackRequired(r, this)) {
 
         }
 
@@ -87,7 +71,6 @@ UndefinedInterceptor<NextwebExceptionManager> {
                 return;
             }
         }
-
         fallbackExceptionManager.onFailure(r);
 
     }
@@ -103,7 +86,7 @@ UndefinedInterceptor<NextwebExceptionManager> {
 
         if (this.exceptionListener != null) {
             this.exceptionListener
-                    .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
+            .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
             return;
         }
 
