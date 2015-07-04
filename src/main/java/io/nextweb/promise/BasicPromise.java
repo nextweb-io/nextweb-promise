@@ -2,8 +2,8 @@ package io.nextweb.promise;
 
 import io.nextweb.promise.callbacks.NextwebCallback;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
-import de.mxro.async.Operation;
 import de.mxro.fn.Closure;
+import delight.async.Operation;
 
 /**
  *
