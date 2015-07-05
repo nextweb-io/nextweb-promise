@@ -2,6 +2,7 @@ package io.nextweb.promise;
 
 import delight.async.Operation;
 import delight.functional.Closure;
+
 import io.nextweb.promise.callbacks.NextwebCallback;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
 

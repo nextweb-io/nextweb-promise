@@ -1,6 +1,7 @@
 package io.nextweb.promise;
 
 import delight.functional.Closure;
+
 import io.nextweb.promise.exceptions.ExceptionResult;
 
 public class Fn {
