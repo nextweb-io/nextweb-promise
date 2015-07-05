@@ -26,8 +26,8 @@
 	<dependencies>
 		
 		<dependency>
-			<groupId>de.mxro.promise</groupId>
-			<artifactId>java-promise</artifactId>
+			<groupId>org.javadelight</groupId>
+			<artifactId>delight-promise</artifactId>
 			<version>0.0.3</version>
 		</dependency>
 		
