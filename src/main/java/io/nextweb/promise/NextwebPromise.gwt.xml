@@ -5,7 +5,7 @@
 	
 	<inherits name="de.mxro.fn.Fn" />
 	
-	<inherits name="de.mxro.promise.Promise" />
+	<inherits name="delight.promise.Promise" />
 	
 	<inherits name="delight.factories.Factories" />
 	
