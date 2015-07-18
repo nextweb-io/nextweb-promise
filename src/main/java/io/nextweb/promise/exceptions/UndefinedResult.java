@@ -2,8 +2,8 @@ package io.nextweb.promise.exceptions;
 
 public interface UndefinedResult {
 
-	public Object origin();
+    public Object origin();
 
-	public String message();
+    public String message();
 
 }
