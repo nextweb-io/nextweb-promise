@@ -32,4 +32,6 @@ public interface BasicPromise<ResultType> extends NextwebOperation<ResultType>, 
 
     public NextwebOperation<ResultType> getOriginalOperation();
 
+    public ResultType cachedResult();
+
 }
