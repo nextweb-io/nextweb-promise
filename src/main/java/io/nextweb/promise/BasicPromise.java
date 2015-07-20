@@ -2,6 +2,7 @@ package io.nextweb.promise;
 
 import delight.async.Operation;
 import delight.functional.Closure;
+import delight.promise.Promise;
 
 import io.nextweb.promise.callbacks.NextwebCallback;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
@@ -31,5 +32,7 @@ public interface BasicPromise<ResultType> extends NextwebOperation<ResultType>, 
     public void apply(NextwebCallback<ResultType> callback);
 
     public NextwebOperation<ResultType> getOriginalOperation();
+
+    public Promise<ResultType> getOriginalPromise();
 
 }
