@@ -24,15 +24,19 @@
 
 	<!-- Dependent Modules -->
 	<dependencies>
-		
+
 		<dependency>
 			<groupId>org.javadelight</groupId>
 			<artifactId>delight-promise</artifactId>
 			<version>0.0.3</version>
 		</dependency>
-		
 
-		
+
+		<dependency>
+			<groupId>de.mxro.service</groupId>
+			<artifactId>service-api</artifactId>
+			<version>0.0.3</version>
+		</dependency>
 
 		<!-- only for gwt maven plugin!!! -->
 		<dependency>
