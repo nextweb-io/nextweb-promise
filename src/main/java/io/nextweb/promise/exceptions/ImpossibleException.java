@@ -22,4 +22,9 @@ public class ImpossibleException extends Throwable {
         return result;
     }
 
+    @Override
+    public String getMessage() {
+        return result.message();
+    }
+
 }
