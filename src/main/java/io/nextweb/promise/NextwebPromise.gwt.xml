@@ -3,7 +3,7 @@
 <module rename-to="nextwebfn">
 	<inherits name="com.google.gwt.user.User" />
 	
-	<inherits name="de.mxro.fn.Fn" />
+	<inherits name="delight.functional.Fn" />
 	
 	<inherits name="delight.promise.Promise" />
 	
