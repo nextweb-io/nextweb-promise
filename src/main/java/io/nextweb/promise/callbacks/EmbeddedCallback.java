@@ -1,11 +1,14 @@
 package io.nextweb.promise.callbacks;
 
+import delight.functional.Closure;
+
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleResult;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.NextwebExceptionUtils;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
+import io.nextweb.promise.utils.AsyncUtils;
 
 public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType> {
 
@@ -125,6 +128,12 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
     public NextwebExceptionManager getExceptionManager() {
 
         return exceptionManager;
+    }
+
+    @Override
+    public NextwebCallback<ResultType> chain(final Closure<ResultType> onSuccess) {
+
+        return AsyncUtils.embeddedCallback(exceptionManager, this, onSuccess);
     }
 
 }
