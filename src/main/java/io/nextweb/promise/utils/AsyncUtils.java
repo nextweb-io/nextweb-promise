@@ -1,6 +1,5 @@
 package io.nextweb.promise.utils;
 
-import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 
@@ -42,10 +41,6 @@ public final class AsyncUtils {
                 callback.onFailure(r.exception());
             }
         };
-    }
-
-    public static final <T, C> ValueCallback<T> embed(final NextwebCallback<C> callback, final Closure<T> onSuccess) {
-        return AsyncCommon.embed(asValueCallback(callback), onSuccess);
     }
 
     public static <ResultType> NextwebCallback<ResultType> embed(final NextwebCallback<?> callback,
@@ -130,7 +125,8 @@ public final class AsyncUtils {
 
             @Override
             public NextwebExceptionManager getExceptionManager() {
-                return AppjangleGlobal.getEngine().getExceptionManager();
+                throw new RuntimeException("Not supported.");
+
             }
 
         };
