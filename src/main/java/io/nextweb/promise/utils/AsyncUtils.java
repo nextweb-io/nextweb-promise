@@ -135,6 +135,12 @@ public final class AsyncUtils {
 
             }
 
+            @Override
+            public NextwebCallback<ResultType> chain(final Closure<ResultType> onSuccess) {
+
+                return AsyncUtils.embed(this, onSuccess);
+            }
+
         };
     }
 
