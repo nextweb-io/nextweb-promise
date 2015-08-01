@@ -1,5 +1,7 @@
 package io.nextweb.promise.callbacks;
 
+import delight.functional.Closure;
+
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
 
 public interface NextwebCallback<ResultType> extends NextwebFailureCallback {
@@ -22,6 +24,6 @@ public interface NextwebCallback<ResultType> extends NextwebFailureCallback {
 
     public NextwebExceptionManager getExceptionManager();
 
-    // public NextwebCallback<ResultType> chain(Closure<ResultType> onSuccess);
+    public NextwebCallback<ResultType> chain(Closure<ResultType> onSuccess);
 
 }
