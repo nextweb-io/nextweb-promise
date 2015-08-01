@@ -24,6 +24,6 @@ public interface NextwebCallback<ResultType> extends NextwebFailureCallback {
 
     public NextwebExceptionManager getExceptionManager();
 
-    public NextwebCallback<ResultType> embed(Closure<ResultType> onSuccess);
+    public NextwebCallback<ResultType> chain(Closure<ResultType> onSuccess);
 
 }
