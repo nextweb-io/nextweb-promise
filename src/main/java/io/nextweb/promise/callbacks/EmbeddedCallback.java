@@ -131,7 +131,7 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
     }
 
     @Override
-    public NextwebCallback<ResultType> chain(final Closure<ResultType> onSuccess) {
+    public <R> NextwebCallback<R> chain(final Closure<R> onSuccess) {
 
         return AsyncUtils.embeddedCallback(exceptionManager, this, onSuccess);
     }
