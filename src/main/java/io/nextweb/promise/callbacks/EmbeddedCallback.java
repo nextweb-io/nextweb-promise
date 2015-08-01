@@ -1,5 +1,7 @@
 package io.nextweb.promise.callbacks;
 
+import delight.functional.Closure;
+
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleResult;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
@@ -125,6 +127,12 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
     public NextwebExceptionManager getExceptionManager() {
 
         return exceptionManager;
+    }
+
+    @Override
+    public NextwebCallback<ResultType> chain(final Closure<ResultType> onSuccess) {
+        
+        return Callback
     }
 
 }
