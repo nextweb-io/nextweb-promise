@@ -75,7 +75,8 @@ public final class AsyncUtils {
         };
     }
 
-    public static <ResultType> NextwebCallback<ResultType> wrap(final ValueCallback<ResultType> callback) {
+    public static <ResultType> NextwebCallback<ResultType> wrap(final NextwebExceptionManager manager,
+            final ValueCallback<ResultType> callback) {
         return new NextwebCallback<ResultType>() {
 
             @Override
@@ -131,7 +132,7 @@ public final class AsyncUtils {
 
             @Override
             public NextwebExceptionManager getExceptionManager() {
-                throw new RuntimeException("Not supported.");
+                return manager;
 
             }
 
