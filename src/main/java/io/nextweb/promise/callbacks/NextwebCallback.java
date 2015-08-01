@@ -1,5 +1,6 @@
 package io.nextweb.promise.callbacks;
 
+import io.nextweb.promise.exceptions.NextwebExceptionManager;
 
 public interface NextwebCallback<ResultType> extends NextwebFailureCallback {
 
@@ -18,5 +19,7 @@ public interface NextwebCallback<ResultType> extends NextwebFailureCallback {
      * @return True if any listener defined.
      */
     public boolean hasEagerListeners();
+
+    public NextwebExceptionManager getExceptionManager();
 
 }
