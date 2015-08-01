@@ -49,6 +49,12 @@ public final class AsyncUtils {
 
     }
 
+    public static <ResultType> ValueCallback<ResultType> embedAsValueCallback(final NextwebCallback<?> callback,
+            final Closure<ResultType> onSuccess) {
+        return asValueCallback(embeddedCallback(callback.getExceptionManager(), callback, onSuccess));
+
+    }
+
     @SuppressWarnings("unchecked")
     public static <ResultType> NextwebCallback<ResultType> embeddedCallback(
             final NextwebExceptionManager exceptionManager, final NextwebCallback<ResultType> embeddedIn) {
