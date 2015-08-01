@@ -121,4 +121,10 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
                 || hasEagerUndefinedListener();
     }
 
+    @Override
+    public NextwebExceptionManager getExceptionManager() {
+
+        return exceptionManager;
+    }
+
 }
