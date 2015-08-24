@@ -8,7 +8,7 @@ import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.NextwebExceptionUtils;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
-import io.nextweb.promise.utils.AsyncUtils;
+import io.nextweb.promise.utils.CallbackUtils;
 
 public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType> {
 
@@ -133,7 +133,7 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
     @Override
     public <R> NextwebCallback<R> chain(final Closure<R> onSuccess) {
 
-        return AsyncUtils.embeddedCallback(exceptionManager, this, onSuccess);
+        return CallbackUtils.embeddedCallback(exceptionManager, this, onSuccess);
     }
 
 }

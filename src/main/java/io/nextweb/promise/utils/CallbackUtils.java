@@ -16,7 +16,7 @@ import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedException;
 import io.nextweb.promise.exceptions.UndefinedResult;
 
-public final class AsyncUtils {
+public final class CallbackUtils {
 
     public static final <T> ValueCallback<T> asValueCallback(final NextwebCallback<T> callback) {
         return new ValueCallback<T>() {
@@ -139,7 +139,7 @@ public final class AsyncUtils {
             @Override
             public <R> NextwebCallback<R> chain(final Closure<R> onSuccess) {
 
-                return AsyncUtils.embed(this, onSuccess);
+                return CallbackUtils.embed(this, onSuccess);
             }
 
         };
