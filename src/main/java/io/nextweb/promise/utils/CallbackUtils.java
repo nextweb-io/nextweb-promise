@@ -75,7 +75,7 @@ public final class CallbackUtils {
         };
     }
 
-    public static <ResultType> NextwebCallback<ResultType> wrap(final NextwebExceptionManager manager,
+    public static <ResultType> NextwebCallback<ResultType> asNextwebCallback(final NextwebExceptionManager manager,
             final ValueCallback<ResultType> callback) {
         return new NextwebCallback<ResultType>() {
 
