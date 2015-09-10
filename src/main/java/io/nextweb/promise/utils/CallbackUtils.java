@@ -1,11 +1,16 @@
 package io.nextweb.promise.utils;
 
+import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.Fn;
-import io.nextweb.promise.callbacks.EmbeddedCallback;
 import io.nextweb.promise.callbacks.DataCallback;
+import io.nextweb.promise.callbacks.EmbeddedCallback;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleException;
@@ -56,15 +61,14 @@ public final class CallbackUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <ResultType> DataCallback<ResultType> embeddedCallback(
-            final NextwebExceptionManager exceptionManager, final DataCallback<ResultType> embeddedIn) {
+    public static <ResultType> DataCallback<ResultType> embeddedCallback(final NextwebExceptionManager exceptionManager,
+            final DataCallback<ResultType> embeddedIn) {
         return new EmbeddedCallback<ResultType>((DataCallback<Object>) embeddedIn, exceptionManager);
     }
 
     @SuppressWarnings("unchecked")
-    public static <ResultType> DataCallback<ResultType> embeddedCallback(
-            final NextwebExceptionManager exceptionManager, final DataCallback<?> embeddedIn,
-            final Closure<ResultType> p_onSuccess) {
+    public static <ResultType> DataCallback<ResultType> embeddedCallback(final NextwebExceptionManager exceptionManager,
+            final DataCallback<?> embeddedIn, final Closure<ResultType> p_onSuccess) {
         return new EmbeddedCallback<ResultType>((DataCallback<Object>) embeddedIn, exceptionManager) {
 
             @Override
@@ -73,6 +77,23 @@ public final class CallbackUtils {
             }
 
         };
+    }
+
+    public static <T> List<Operation<T>> asOperations(final NextwebExceptionManager manager,
+            final List<DataOperation<T>> operations) {
+        final ArrayList<Operation<T>> res = new ArrayList<Operation<T>>(operations.size());
+
+        for (final DataOperation<T> operation : operations) {
+            res.add(new Operation<T>() {
+
+                @Override
+                public void apply(final ValueCallback<T> callback) {
+                    operation.apply(CallbackUtils.asNextwebCallback(manager, callback));
+                }
+            });
+        }
+
+        return res;
     }
 
     public static <ResultType> DataCallback<ResultType> asNextwebCallback(final NextwebExceptionManager manager,
@@ -91,7 +112,6 @@ public final class CallbackUtils {
 
             @Override
             public void onUndefined(final UndefinedResult r) {
-
                 callback.onFailure(new UndefinedException(r));
             }
 
