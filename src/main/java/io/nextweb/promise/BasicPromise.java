@@ -30,10 +30,10 @@ public interface BasicPromise<ResultType> extends NextwebOperation<ResultType>, 
     public NextwebExceptionManager getExceptionManager();
 
     @Override
-    public void apply(NextwebCallback<ResultType> callback);
+    public void apply(ValueCallback<ResultType> callback);
 
     @Override
-    public void apply(ValueCallback<ResultType> callback);
+    public void apply(NextwebCallback<ResultType> callback);
 
     public NextwebOperation<ResultType> getOriginalOperation();
 
