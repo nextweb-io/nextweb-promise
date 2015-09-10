@@ -5,8 +5,17 @@ import java.util.List;
 public class Promises {
 
     public <T> DataPromise<T> sequential(final List<DataOperation<T>> operations) {
-        return null;
-
+        
+        
+        DataPromise<T> chain = null;
+        
+        for (final DataOperation<T> op: operations) {
+            if (chain == null) {
+                chain = op
+            }
+            
+        }
+        
     }
 
 }
