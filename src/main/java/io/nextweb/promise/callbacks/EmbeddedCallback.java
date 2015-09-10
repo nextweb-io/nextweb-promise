@@ -4,7 +4,7 @@ import delight.functional.Closure;
 
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleResult;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.NextwebExceptionUtils;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
@@ -13,7 +13,7 @@ import io.nextweb.promise.utils.CallbackUtils;
 public class EmbeddedCallback<ResultType> implements DataCallback<ResultType> {
 
     private final DataCallback<Object> embeddedIn;
-    private final NextwebExceptionManager exceptionManager;
+    private final DataExceptionManager exceptionManager;
 
     @Override
     public void onUndefined(final UndefinedResult r) {
@@ -111,7 +111,7 @@ public class EmbeddedCallback<ResultType> implements DataCallback<ResultType> {
         return embeddedIn.hasEagerUnauthorizedListener();
     }
 
-    public EmbeddedCallback(final DataCallback<Object> embeddedIn, final NextwebExceptionManager exceptionManager) {
+    public EmbeddedCallback(final DataCallback<Object> embeddedIn, final DataExceptionManager exceptionManager) {
         super();
         this.embeddedIn = embeddedIn;
         this.exceptionManager = exceptionManager;
@@ -125,7 +125,7 @@ public class EmbeddedCallback<ResultType> implements DataCallback<ResultType> {
     }
 
     @Override
-    public NextwebExceptionManager getExceptionManager() {
+    public DataExceptionManager getExceptionManager() {
 
         return exceptionManager;
     }

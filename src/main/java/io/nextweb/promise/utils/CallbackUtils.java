@@ -16,7 +16,7 @@ import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleException;
 import io.nextweb.promise.exceptions.ImpossibleResult;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.UnauthorizedException;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedException;
@@ -47,13 +47,13 @@ public final class CallbackUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <ResultType> DataCallback<ResultType> embeddedCallback(final NextwebExceptionManager exceptionManager,
+    public static <ResultType> DataCallback<ResultType> embeddedCallback(final DataExceptionManager exceptionManager,
             final DataCallback<ResultType> embeddedIn) {
         return new EmbeddedCallback<ResultType>((DataCallback<Object>) embeddedIn, exceptionManager);
     }
 
     @SuppressWarnings("unchecked")
-    public static <ResultType> DataCallback<ResultType> embeddedCallback(final NextwebExceptionManager exceptionManager,
+    public static <ResultType> DataCallback<ResultType> embeddedCallback(final DataExceptionManager exceptionManager,
             final DataCallback<?> embeddedIn, final Closure<ResultType> p_onSuccess) {
         return new EmbeddedCallback<ResultType>((DataCallback<Object>) embeddedIn, exceptionManager) {
 
@@ -65,7 +65,7 @@ public final class CallbackUtils {
         };
     }
 
-    public static <T> List<Operation<T>> asOperations(final NextwebExceptionManager fallbackManager,
+    public static <T> List<Operation<T>> asOperations(final DataExceptionManager fallbackManager,
             final List<DataOperation<T>> operations) {
         final ArrayList<Operation<T>> res = new ArrayList<Operation<T>>(operations.size());
 
@@ -74,7 +74,7 @@ public final class CallbackUtils {
 
                 @Override
                 public void apply(final ValueCallback<T> callback) {
-                    NextwebExceptionManager manager;
+                    DataExceptionManager manager;
                     if (operation instanceof DataPromise) {
                         final DataPromise<T> dataPromise = (DataPromise<T>) operation;
                         manager = dataPromise.getExceptionManager();
@@ -125,7 +125,7 @@ public final class CallbackUtils {
         };
     }
 
-    public static <ResultType> DataCallback<ResultType> asDataCallback(final NextwebExceptionManager manager,
+    public static <ResultType> DataCallback<ResultType> asDataCallback(final DataExceptionManager manager,
             final ValueCallback<ResultType> callback) {
         return new DataCallback<ResultType>() {
 
@@ -180,7 +180,7 @@ public final class CallbackUtils {
             }
 
             @Override
-            public NextwebExceptionManager getExceptionManager() {
+            public DataExceptionManager getExceptionManager() {
                 return manager;
 
             }

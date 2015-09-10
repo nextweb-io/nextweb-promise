@@ -6,7 +6,7 @@ import delight.functional.Closure;
 import delight.promise.Promise;
 
 import io.nextweb.promise.callbacks.DataCallback;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 
 /**
  *
@@ -27,7 +27,7 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
 
     public void get(Closure<ResultType> callback);
 
-    public NextwebExceptionManager getExceptionManager();
+    public DataExceptionManager getExceptionManager();
 
     @Override
     public void apply(ValueCallback<ResultType> callback);

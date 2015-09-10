@@ -2,7 +2,7 @@ package io.nextweb.promise.callbacks;
 
 import delight.functional.Closure;
 
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 
 public interface DataCallback<ResultType> extends DataFailureCallback {
 
@@ -22,7 +22,7 @@ public interface DataCallback<ResultType> extends DataFailureCallback {
      */
     public boolean hasEagerListeners();
 
-    public NextwebExceptionManager getExceptionManager();
+    public DataExceptionManager getExceptionManager();
 
     public <R> DataCallback<R> chain(Closure<R> onSuccess);
 
