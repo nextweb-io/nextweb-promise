@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.nextweb.promise.DataOperation;
+import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.callbacks.EmbeddedCallback;
@@ -79,7 +80,7 @@ public final class CallbackUtils {
         };
     }
 
-    public static <T> List<Operation<T>> asOperations(final NextwebExceptionManager manager,
+    public static <T> List<Operation<T>> asOperations(final NextwebExceptionManager fallbackManager,
             final List<DataOperation<T>> operations) {
         final ArrayList<Operation<T>> res = new ArrayList<Operation<T>>(operations.size());
 
@@ -88,6 +89,14 @@ public final class CallbackUtils {
 
                 @Override
                 public void apply(final ValueCallback<T> callback) {
+                    NextwebExceptionManager manager;
+                    if (operation instanceof DataPromise) {
+                        final DataPromise<T> dataPromise = (DataPromise<T>) operation;
+                        manager = dataPromise.getExceptionManager();
+                    } else {
+                        manager = fallbackManager;
+                    }
+
                     operation.apply(CallbackUtils.asNextwebCallback(manager, callback));
                 }
             });
