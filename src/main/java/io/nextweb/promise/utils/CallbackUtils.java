@@ -97,7 +97,7 @@ public final class CallbackUtils {
                         manager = fallbackManager;
                     }
 
-                    operation.apply(CallbackUtils.asNextwebCallback(manager, callback));
+                    operation.apply(CallbackUtils.asDataCallback(manager, callback));
                 }
             });
         }
@@ -105,7 +105,7 @@ public final class CallbackUtils {
         return res;
     }
 
-    public static <ResultType> DataCallback<ResultType> asNextwebCallback(final NextwebExceptionManager manager,
+    public static <ResultType> DataCallback<ResultType> asDataCallback(final NextwebExceptionManager manager,
             final ValueCallback<ResultType> callback) {
         return new DataCallback<ResultType>() {
 
