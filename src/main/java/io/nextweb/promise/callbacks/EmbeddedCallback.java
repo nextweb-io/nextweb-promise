@@ -10,9 +10,9 @@ import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import io.nextweb.promise.utils.CallbackUtils;
 
-public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType> {
+public class EmbeddedCallback<ResultType> implements DataCallback<ResultType> {
 
-    private final NextwebCallback<Object> embeddedIn;
+    private final DataCallback<Object> embeddedIn;
     private final NextwebExceptionManager exceptionManager;
 
     @Override
@@ -111,7 +111,7 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
         return embeddedIn.hasEagerUnauthorizedListener();
     }
 
-    public EmbeddedCallback(final NextwebCallback<Object> embeddedIn, final NextwebExceptionManager exceptionManager) {
+    public EmbeddedCallback(final DataCallback<Object> embeddedIn, final NextwebExceptionManager exceptionManager) {
         super();
         this.embeddedIn = embeddedIn;
         this.exceptionManager = exceptionManager;
@@ -131,7 +131,7 @@ public class EmbeddedCallback<ResultType> implements NextwebCallback<ResultType>
     }
 
     @Override
-    public <R> NextwebCallback<R> chain(final Closure<R> onSuccess) {
+    public <R> DataCallback<R> chain(final Closure<R> onSuccess) {
 
         return CallbackUtils.embeddedCallback(exceptionManager, this, onSuccess);
     }

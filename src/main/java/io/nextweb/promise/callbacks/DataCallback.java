@@ -4,7 +4,7 @@ import delight.functional.Closure;
 
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
 
-public interface NextwebCallback<ResultType> extends NextwebFailureCallback {
+public interface DataCallback<ResultType> extends DataFailureCallback {
 
     public void onSuccess(ResultType result);
 
@@ -24,6 +24,6 @@ public interface NextwebCallback<ResultType> extends NextwebFailureCallback {
 
     public NextwebExceptionManager getExceptionManager();
 
-    public <R> NextwebCallback<R> chain(Closure<R> onSuccess);
+    public <R> DataCallback<R> chain(Closure<R> onSuccess);
 
 }

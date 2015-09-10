@@ -1,10 +1,10 @@
 package io.nextweb.promise.exceptions;
 
-import io.nextweb.promise.callbacks.NextwebFailureCallback;
+import io.nextweb.promise.callbacks.DataFailureCallback;
 
 public class NextwebExceptionUtils {
 
-    public static <T> boolean nextwebCallbackRequired(final Throwable o, final NextwebFailureCallback callback) {
+    public static <T> boolean nextwebCallbackRequired(final Throwable o, final DataFailureCallback callback) {
 
         if (o instanceof ImpossibleException) {
             final ImpossibleException ie = (ImpossibleException) o;
@@ -28,7 +28,7 @@ public class NextwebExceptionUtils {
         return false;
     }
 
-    public static <T> boolean nextwebCallbackRequired(final ExceptionResult er, final NextwebFailureCallback callback) {
+    public static <T> boolean nextwebCallbackRequired(final ExceptionResult er, final DataFailureCallback callback) {
 
         final Throwable o = er.exception();
 

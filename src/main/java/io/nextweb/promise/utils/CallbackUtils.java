@@ -5,7 +5,7 @@ import delight.functional.Closure;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.EmbeddedCallback;
-import io.nextweb.promise.callbacks.NextwebCallback;
+import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleException;
@@ -18,7 +18,7 @@ import io.nextweb.promise.exceptions.UndefinedResult;
 
 public final class CallbackUtils {
 
-    public static final <T> ValueCallback<T> asValueCallback(final NextwebCallback<T> callback) {
+    public static final <T> ValueCallback<T> asValueCallback(final DataCallback<T> callback) {
         return new ValueCallback<T>() {
 
             @Override
@@ -43,29 +43,29 @@ public final class CallbackUtils {
         };
     }
 
-    public static <ResultType> NextwebCallback<ResultType> embed(final NextwebCallback<?> callback,
+    public static <ResultType> DataCallback<ResultType> embed(final DataCallback<?> callback,
             final Closure<ResultType> onSuccess) {
         return embeddedCallback(callback.getExceptionManager(), callback, onSuccess);
 
     }
 
-    public static <ResultType> ValueCallback<ResultType> embedAsValueCallback(final NextwebCallback<?> callback,
+    public static <ResultType> ValueCallback<ResultType> embedAsValueCallback(final DataCallback<?> callback,
             final Closure<ResultType> onSuccess) {
         return asValueCallback(embeddedCallback(callback.getExceptionManager(), callback, onSuccess));
 
     }
 
     @SuppressWarnings("unchecked")
-    public static <ResultType> NextwebCallback<ResultType> embeddedCallback(
-            final NextwebExceptionManager exceptionManager, final NextwebCallback<ResultType> embeddedIn) {
-        return new EmbeddedCallback<ResultType>((NextwebCallback<Object>) embeddedIn, exceptionManager);
+    public static <ResultType> DataCallback<ResultType> embeddedCallback(
+            final NextwebExceptionManager exceptionManager, final DataCallback<ResultType> embeddedIn) {
+        return new EmbeddedCallback<ResultType>((DataCallback<Object>) embeddedIn, exceptionManager);
     }
 
     @SuppressWarnings("unchecked")
-    public static <ResultType> NextwebCallback<ResultType> embeddedCallback(
-            final NextwebExceptionManager exceptionManager, final NextwebCallback<?> embeddedIn,
+    public static <ResultType> DataCallback<ResultType> embeddedCallback(
+            final NextwebExceptionManager exceptionManager, final DataCallback<?> embeddedIn,
             final Closure<ResultType> p_onSuccess) {
-        return new EmbeddedCallback<ResultType>((NextwebCallback<Object>) embeddedIn, exceptionManager) {
+        return new EmbeddedCallback<ResultType>((DataCallback<Object>) embeddedIn, exceptionManager) {
 
             @Override
             public void onSuccess(final ResultType result) {
@@ -75,9 +75,9 @@ public final class CallbackUtils {
         };
     }
 
-    public static <ResultType> NextwebCallback<ResultType> asNextwebCallback(final NextwebExceptionManager manager,
+    public static <ResultType> DataCallback<ResultType> asNextwebCallback(final NextwebExceptionManager manager,
             final ValueCallback<ResultType> callback) {
-        return new NextwebCallback<ResultType>() {
+        return new DataCallback<ResultType>() {
 
             @Override
             public void onFailure(final ExceptionResult r) {
@@ -137,7 +137,7 @@ public final class CallbackUtils {
             }
 
             @Override
-            public <R> NextwebCallback<R> chain(final Closure<R> onSuccess) {
+            public <R> DataCallback<R> chain(final Closure<R> onSuccess) {
 
                 return CallbackUtils.embed(this, onSuccess);
             }

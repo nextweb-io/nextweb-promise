@@ -1,11 +1,11 @@
 package io.nextweb.promise.exceptions;
 
 import io.nextweb.promise.Fn;
-import io.nextweb.promise.callbacks.NextwebFailureCallback;
+import io.nextweb.promise.callbacks.DataFailureCallback;
 
 public class NextwebExceptionManager implements ExceptionInterceptor<NextwebExceptionManager>,
 UnauthorizedInterceptor<NextwebExceptionManager>, ImpossibleInterceptor<NextwebExceptionManager>,
-        UndefinedInterceptor<NextwebExceptionManager>, NextwebFailureCallback {
+        UndefinedInterceptor<NextwebExceptionManager>, DataFailureCallback {
 
     public static NextwebExceptionManager fallbackExceptionManager;
 

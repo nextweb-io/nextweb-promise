@@ -5,7 +5,7 @@ import io.nextweb.promise.exceptions.ImpossibleListener;
 import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UndefinedListener;
 
-public interface NextwebFailureCallback extends ExceptionListener, UnauthorizedListener, UndefinedListener,
+public interface DataFailureCallback extends ExceptionListener, UnauthorizedListener, UndefinedListener,
         ImpossibleListener {
 
 }

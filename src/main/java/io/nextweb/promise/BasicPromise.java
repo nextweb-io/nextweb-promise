@@ -5,7 +5,7 @@ import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.promise.Promise;
 
-import io.nextweb.promise.callbacks.NextwebCallback;
+import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
 
 /**
@@ -15,7 +15,7 @@ import io.nextweb.promise.exceptions.NextwebExceptionManager;
  * 
  * @param <ResultType>
  */
-public interface BasicPromise<ResultType> extends NextwebOperation<ResultType>, Operation<ResultType> {
+public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Operation<ResultType> {
 
     /**
      * get() will ignore all defined exception interceptors to assure
@@ -33,9 +33,9 @@ public interface BasicPromise<ResultType> extends NextwebOperation<ResultType>, 
     public void apply(ValueCallback<ResultType> callback);
 
     @Override
-    public void apply(NextwebCallback<ResultType> callback);
+    public void apply(DataCallback<ResultType> callback);
 
-    public NextwebOperation<ResultType> getOriginalOperation();
+    public DataOperation<ResultType> getOriginalOperation();
 
     public Promise<ResultType> getOriginalPromise();
 
