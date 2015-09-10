@@ -24,21 +24,6 @@ import io.nextweb.promise.exceptions.UndefinedResult;
 
 public final class CallbackUtils {
 
-    public static final <T> ValueCallback<T> asValueCallback(final DataCallback<T> callback) {
-        return new ValueCallback<T>() {
-
-            @Override
-            public void onFailure(final Throwable t) {
-                callback.onFailure(Fn.exception(this, t));
-            }
-
-            @Override
-            public void onSuccess(final T value) {
-                callback.onSuccess(value);
-            }
-        };
-    }
-
     public static final <T> ExceptionListener asExceptionListener(final ValueCallback<T> callback) {
         return new ExceptionListener() {
 
@@ -103,6 +88,34 @@ public final class CallbackUtils {
         }
 
         return res;
+    }
+
+    public static final <T> ValueCallback<T> asValueCallback(final DataCallback<T> callback) {
+        return new ValueCallback<T>() {
+
+            @Override
+            public void onFailure(final Throwable t) {
+                if (t instanceof UnauthorizedException) {
+                    final UnauthorizedException unauthorizedException = (UnauthorizedException) t;
+                    callback.onUnauthorized(unauthorizedException.getResult());
+                    return;
+                }
+
+                if (t instanceof UndefinedException) {
+
+                    final UndefinedException undefinedException = (UndefinedException) t;
+                    callback.onUndefined(undefinedException.getResult());
+                    return;
+                }
+
+                callback.onFailure(Fn.exception(this, t));
+            }
+
+            @Override
+            public void onSuccess(final T value) {
+                callback.onSuccess(value);
+            }
+        };
     }
 
     public static <ResultType> DataCallback<ResultType> asDataCallback(final NextwebExceptionManager manager,
