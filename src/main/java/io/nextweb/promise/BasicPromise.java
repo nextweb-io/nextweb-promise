@@ -1,6 +1,7 @@
 package io.nextweb.promise;
 
 import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.promise.Promise;
 
@@ -30,6 +31,9 @@ public interface BasicPromise<ResultType> extends NextwebOperation<ResultType>, 
 
     @Override
     public void apply(NextwebCallback<ResultType> callback);
+
+    @Override
+    public void apply(ValueCallback<ResultType> callback);
 
     public NextwebOperation<ResultType> getOriginalOperation();
 
