@@ -108,6 +108,13 @@ public final class CallbackUtils {
                     return;
                 }
 
+                if (t instanceof ImpossibleException) {
+
+                    final ImpossibleException impossibleException = (ImpossibleException) t;
+                    callback.onImpossible(impossibleException.getResult());
+                    return;
+                }
+
                 callback.onFailure(Fn.exception(this, t));
             }
 
