@@ -126,7 +126,7 @@ public final class CallbackUtils {
 
             @Override
             public void onSuccess(final T value) {
-                System.out.println(this);
+
                 callback.onSuccess(value);
             }
         };
@@ -158,6 +158,7 @@ public final class CallbackUtils {
 
             @Override
             public void onSuccess(final ResultType result) {
+                // System.out.println(this);
                 callback.onSuccess(result);
             }
 
