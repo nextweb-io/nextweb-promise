@@ -12,11 +12,11 @@ import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.callbacks.EmbeddedCallback;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleException;
 import io.nextweb.promise.exceptions.ImpossibleResult;
-import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.UnauthorizedException;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedException;
@@ -66,8 +66,8 @@ public final class CallbackUtils {
     }
 
     public static <T> List<Operation<T>> asOperations(final DataExceptionManager fallbackManager,
-            final List<DataOperation<T>> operations) {
-        final ArrayList<Operation<T>> res = new ArrayList<Operation<T>>(operations.size());
+            final DataOperation... operations) {
+        final ArrayList<Operation<T>> res = new ArrayList<Operation<T>>(operations.length);
 
         for (final DataOperation<T> operation : operations) {
             res.add(new Operation<T>() {
