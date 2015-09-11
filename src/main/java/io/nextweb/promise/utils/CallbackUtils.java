@@ -73,10 +73,12 @@ public final class CallbackUtils {
 
             @SuppressWarnings("unchecked")
             final DataOperation<T> operation = (DataOperation<T>) rawOperation;
+
             res.add(new Operation<T>() {
 
                 @Override
                 public void apply(final ValueCallback<T> callback) {
+
                     DataExceptionManager manager;
                     if (operation instanceof DataPromise) {
                         final DataPromise<T> dataPromise = (DataPromise<T>) operation;
@@ -98,6 +100,7 @@ public final class CallbackUtils {
 
             @Override
             public void onFailure(final Throwable t) {
+
                 if (t instanceof UnauthorizedException) {
                     final UnauthorizedException unauthorizedException = (UnauthorizedException) t;
                     callback.onUnauthorized(unauthorizedException.getResult());
@@ -123,6 +126,7 @@ public final class CallbackUtils {
 
             @Override
             public void onSuccess(final T value) {
+                System.out.println(this);
                 callback.onSuccess(value);
             }
         };
