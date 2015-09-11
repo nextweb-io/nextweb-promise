@@ -66,10 +66,13 @@ public final class CallbackUtils {
     }
 
     public static <T> List<Operation<T>> asOperations(final DataExceptionManager fallbackManager,
-            final DataOperation... operations) {
+            final Object... operations) {
         final ArrayList<Operation<T>> res = new ArrayList<Operation<T>>(operations.length);
 
-        for (final DataOperation<T> operation : operations) {
+        for (final Object rawOperation : operations) {
+
+            @SuppressWarnings("unchecked")
+            final DataOperation<T> operation = (DataOperation<T>) rawOperation;
             res.add(new Operation<T>() {
 
                 @Override
