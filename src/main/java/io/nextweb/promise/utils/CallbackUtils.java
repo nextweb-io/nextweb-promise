@@ -65,8 +65,8 @@ public final class CallbackUtils {
         };
     }
 
-    public static <T, OP extends Operation<T>> List<Operation<T>> asOperations(
-            final DataExceptionManager fallbackManager, final OP... operations) {
+    public static <T, OP> List<Operation<T>> asOperations(final DataExceptionManager fallbackManager,
+            final OP... operations) {
         final ArrayList<Operation<T>> res = new ArrayList<Operation<T>>(operations.length);
 
         for (final Object rawOperation : operations) {
