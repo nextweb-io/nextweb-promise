@@ -6,6 +6,12 @@ public class UndefinedException extends Throwable {
 
     private final UndefinedResult result;
 
+    @Override
+    public String getMessage() {
+
+        return result.message();
+    }
+
     public UndefinedException(final UndefinedResult result) {
         super();
         this.result = result;
