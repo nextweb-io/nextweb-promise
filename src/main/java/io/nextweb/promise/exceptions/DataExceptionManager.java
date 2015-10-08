@@ -7,7 +7,7 @@ public class DataExceptionManager
         implements ExceptionInterceptor<DataExceptionManager>, UnauthorizedInterceptor<DataExceptionManager>,
         ImpossibleInterceptor<DataExceptionManager>, UndefinedInterceptor<DataExceptionManager>, DataFailureCallback {
 
-    public static final boolean ENABLE_LOG = true;
+    public static final boolean ENABLE_LOG = false;
 
     public static DataExceptionManager fallbackExceptionManager;
 
