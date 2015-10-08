@@ -75,13 +75,15 @@ public class DataExceptionManager
 
     @Override
     public void onUnauthorized(final UnauthorizedResult r) {
-        System.out.println("HERE " + r);
+        System.out.println("HERE " + r + " " + this.authExceptionListener);
         // assert canCatchAuthorizationExceptions() || canCatchExceptions();
 
         if (this.authExceptionListener != null) {
             this.authExceptionListener.onUnauthorized(r);
             return;
         }
+
+        System.out.println("HERE2 " + this.exceptionListener);
 
         if (this.exceptionListener != null) {
             this.exceptionListener
