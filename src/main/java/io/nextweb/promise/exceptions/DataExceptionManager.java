@@ -3,9 +3,9 @@ package io.nextweb.promise.exceptions;
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.DataFailureCallback;
 
-public class DataExceptionManager implements ExceptionInterceptor<DataExceptionManager>,
-UnauthorizedInterceptor<DataExceptionManager>, ImpossibleInterceptor<DataExceptionManager>,
-        UndefinedInterceptor<DataExceptionManager>, DataFailureCallback {
+public class DataExceptionManager
+        implements ExceptionInterceptor<DataExceptionManager>, UnauthorizedInterceptor<DataExceptionManager>,
+        ImpossibleInterceptor<DataExceptionManager>, UndefinedInterceptor<DataExceptionManager>, DataFailureCallback {
 
     public static DataExceptionManager fallbackExceptionManager;
 
@@ -41,10 +41,8 @@ UnauthorizedInterceptor<DataExceptionManager>, ImpossibleInterceptor<DataExcepti
     }
 
     public boolean canCatchAuthorizationExceptions() {
-        return this.authExceptionListener != null
-                || canCatchExceptions()
-                || (this.parentExceptionManager != null && this.parentExceptionManager
-                .canCatchAuthorizationExceptions());
+        return this.authExceptionListener != null || canCatchExceptions() || (this.parentExceptionManager != null
+                && this.parentExceptionManager.canCatchAuthorizationExceptions());
 
     }
 
@@ -77,6 +75,7 @@ UnauthorizedInterceptor<DataExceptionManager>, ImpossibleInterceptor<DataExcepti
 
     @Override
     public void onUnauthorized(final UnauthorizedResult r) {
+        System.out.println("HERE " + r);
         // assert canCatchAuthorizationExceptions() || canCatchExceptions();
 
         if (this.authExceptionListener != null) {
@@ -86,7 +85,7 @@ UnauthorizedInterceptor<DataExceptionManager>, ImpossibleInterceptor<DataExcepti
 
         if (this.exceptionListener != null) {
             this.exceptionListener
-            .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
+                    .onFailure(Fn.exception(r.origin(), new Exception("Unauthorized: " + r.getMessage())));
             return;
         }
 
@@ -110,8 +109,8 @@ UnauthorizedInterceptor<DataExceptionManager>, ImpossibleInterceptor<DataExcepti
         }
 
         if (this.exceptionListener != null) {
-            this.exceptionListener.onFailure(Fn.exception(ir.origin(),
-                    new Exception("Operation impossible: [" + ir.message() + "]")));
+            this.exceptionListener.onFailure(
+                    Fn.exception(ir.origin(), new Exception("Operation impossible: [" + ir.message() + "]")));
             return;
         }
 
