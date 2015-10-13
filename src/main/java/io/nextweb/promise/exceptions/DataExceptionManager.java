@@ -80,6 +80,7 @@ public class DataExceptionManager
         if (ENABLE_LOG) {
             System.out.println(this + ": Trigger unauthorized. Has:\n" + "  authListener: " + this.authExceptionListener
                     + "\n" + "  exceptionListener: " + this.exceptionListener);
+
         }
 
         if (this.authExceptionListener != null) {
