@@ -18,6 +18,10 @@ public class DataExceptionManager
 
     private final DataExceptionManager parentExceptionManager;
 
+    public DataExceptionManager getParentExceptionManager() {
+        return parentExceptionManager;
+    }
+
     @Override
     public DataExceptionManager catchUnauthorized(final UnauthorizedListener authExceptionListener) {
         this.authExceptionListener = authExceptionListener;
