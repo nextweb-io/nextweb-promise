@@ -270,9 +270,35 @@
 							<version>2.9.1</version>
 							<configuration>
 								<links>
-									<link>http://modules.appjangle.com/fn-api/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/async-api/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/java-promise/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-async/latest/apidocs</link>
+									<link>http://modules.appjangle.com/delight-services/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-promise/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-strings/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-functional/latest/apidocs/</link>
+									
+									<link>http://modules.appjangle.com/nextweb-promise/latest/apidocs/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/nextweb-promise-js/latest/apidocs/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/java-promise/latest/apidocs/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-client-api/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-jre-internal/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-android-internal/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-client-api-js/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-javascript/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-auth/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-database/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-email/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-hooks/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-operations/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-servers/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-services/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-sql/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-root-users/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-js-root-auth/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-js-root-database/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-js-root-emails/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-js-root-hooks/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-js-root-operations/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/appjangle-api-js-root-services/latest/apidocs/</link>
 								</links>
 							</configuration>
 						</plugin>
