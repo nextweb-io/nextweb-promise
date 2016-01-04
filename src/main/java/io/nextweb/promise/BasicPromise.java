@@ -9,7 +9,8 @@ import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 
 /**
- *
+ * <p>
+ * A basic resolvable promise.
  * 
  * @author Max Rohde
  * 
