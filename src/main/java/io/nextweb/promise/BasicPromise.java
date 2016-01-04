@@ -59,6 +59,15 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
 
     /**
      * <p>
+     * This method attempts to resolve the promise and call the specified
+     * callback.
+     * <p>
+     * If the promise has already been resolved, the last result obtained is
+     * returned (e.g. the promise is not resolved anew).
+     * <p>
+     * If exception interceptors have been defined for this promise, they are
+     * ignored. Instead, the {@link ValueCallback#onFailure(Throwable)} method
+     * will be triggered.
      */
     @Override
     public void apply(ValueCallback<ResultType> callback);
