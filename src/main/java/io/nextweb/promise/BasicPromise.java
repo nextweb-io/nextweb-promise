@@ -32,6 +32,13 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
      */
     public ResultType get();
 
+    /**
+     * <p>
+     * The method will attempt to resolve this promise and call the specified
+     * callback once the promise is resolved.
+     * 
+     * @param callback
+     */
     public void get(Closure<ResultType> callback);
 
     public DataExceptionManager getExceptionManager();
