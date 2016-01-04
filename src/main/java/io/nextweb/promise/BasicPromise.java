@@ -49,13 +49,17 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
     public void get(Closure<ResultType> callback);
 
     /**
+     * <p>
      * Allows access to the {@link DataExceptionManager} that manages the
      * exception interceptors for this promise.
      * 
-     * @return
+     * @return An instance of the exception manager for this promise.
      */
     public DataExceptionManager getExceptionManager();
 
+    /**
+     * <p>
+     */
     @Override
     public void apply(ValueCallback<ResultType> callback);
 
