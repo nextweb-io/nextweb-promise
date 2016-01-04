@@ -4,13 +4,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
 	<bannerLeft>
-
-		<name>Nextweb.io API</name>
-		<!-- <src>http://u1.linnk.it/0fs7dr/Apps1/appjangle/appjangle_logo_01.value.png</src> -->
-		<href>http://nextweb.io</href>
-
+		<name>ObjectHub</name>
+		<src>https://beta.objecthub.io/files/icons-V1/logo.svg</src>
+		<href>http://objecthub.io</href>
 	</bannerLeft>
-
 
 	<skin>
 		<groupId>org.apache.maven.skins</groupId>
@@ -22,16 +19,15 @@
 
 			<topBarEnabled>false</topBarEnabled>
 			<sideBarEnabled>true</sideBarEnabled>
-
+			
 		</fluidoSkin>
 	</custom>
 
 
 	<body>
 		<links>
-			<item name="Nextweb API" href="http://nextweb.io" />
-			<item name="Appjangle" href="http://appjangle.com" />
-			<item name="Max Rohde" href="http://www.mxro.de" />
+			
+			<item name="ObjectHub" href="https://objecthub.io" />
 		</links>
 
 
