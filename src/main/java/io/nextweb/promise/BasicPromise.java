@@ -95,6 +95,13 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
      */
     public DataOperation<ResultType> getOriginalOperation();
 
+    /**
+     * <p>
+     * Obtains the low-level implementation of this promise, which does not
+     * support {@link DataCallback}
+     * 
+     * @return
+     */
     public Promise<ResultType> getOriginalPromise();
 
 }
