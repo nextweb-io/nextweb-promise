@@ -20,6 +20,11 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
 
     /**
      * <p>
+     * This method will attempt to get the result of this promise.
+     * <p>
+     * If the promise has already been resolved, the last result obtained is
+     * returned (e.g. the promise is not resolved anew).
+     * <p>
      * Note: get() will ignore all defined exception interceptors to assure
      * termination of the statement.
      * 
