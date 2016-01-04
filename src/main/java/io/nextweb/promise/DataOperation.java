@@ -5,6 +5,8 @@ import io.nextweb.promise.callbacks.DataCallback;
 /**
  * <p>
  * Abstraction for a basic operation on data.
+ * <p>
+ * In difference to a
  * 
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
