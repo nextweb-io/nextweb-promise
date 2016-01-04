@@ -72,9 +72,27 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
     @Override
     public void apply(ValueCallback<ResultType> callback);
 
+    /**
+     * <p>
+     * This method attempts to resolve the promise and call the specified
+     * callback.
+     * <p>
+     * If the promise has already been resolved, the last result obtained is
+     * returned (e.g. the promise is not resolved anew).
+     * <p>
+     * If exception interceptors have been defined for this promise, they are
+     * ignored. Instead, the matching method of the specified
+     * {@link DataCallback} is called.
+     */
     @Override
     public void apply(DataCallback<ResultType> callback);
 
+    /**
+     * <p>
+     * Obtains the basic operation that was used to create this promise.
+     * 
+     * @return The operation instance used to create this promise.
+     */
     public DataOperation<ResultType> getOriginalOperation();
 
     public Promise<ResultType> getOriginalPromise();
