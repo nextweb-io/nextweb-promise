@@ -19,10 +19,11 @@ import io.nextweb.promise.exceptions.DataExceptionManager;
 public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Operation<ResultType> {
 
     /**
-     * get() will ignore all defined exception interceptors to assure
+     * <p>
+     * Note: get() will ignore all defined exception interceptors to assure
      * termination of the statement.
      * 
-     * @return
+     * @return The result that can be obtained by resolving this promise.
      */
     public ResultType get();
 
