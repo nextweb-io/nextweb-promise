@@ -36,11 +36,24 @@ public interface BasicPromise<ResultType> extends DataOperation<ResultType>, Ope
      * <p>
      * The method will attempt to resolve this promise and call the specified
      * callback once the promise is resolved.
+     * <p>
+     * If the promise has already been resolved, the last result obtained is
+     * returned (e.g. the promise is not resolved anew).
+     * <p>
+     * If an error occurs, either a runtime exception is thrown or an exception
+     * interceptor is called if these have been defined.
      * 
      * @param callback
+     *            The callback to be called once the promise is resolved.
      */
     public void get(Closure<ResultType> callback);
 
+    /**
+     * Allows access to the {@link DataExceptionManager} that manages the
+     * exception interceptors for this promise.
+     * 
+     * @return
+     */
     public DataExceptionManager getExceptionManager();
 
     @Override
