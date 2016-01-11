@@ -41,8 +41,7 @@ public final class DataPromises {
             }
         });
 
-        final DataPromiseImpl<ResultType> impl = new DataPromiseImpl<ResultType>(operation, promise,
-                new DataExceptionManager(null));
+        final DataPromiseImpl<ResultType> impl = new DataPromiseImpl<ResultType>(operation, promise, exceptionManager);
 
         promise.addExceptionFallback(new Closure<Throwable>() {
 
