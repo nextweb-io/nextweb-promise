@@ -21,6 +21,7 @@ import io.nextweb.promise.exceptions.UnauthorizedException;
 import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedException;
+import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 
 public final class CallbackUtils {
@@ -152,6 +153,14 @@ public final class CallbackUtils {
             }
         });
 
+        exceptionManager.catchUndefined(new UndefinedListener() {
+
+            @Override
+            public void onUndefined(final UndefinedResult r) {
+                callback.onFailure(new UndefinedException(r));
+            }
+        });
+
         return new DataCallback<ResultType>() {
 
             @Override
@@ -167,7 +176,7 @@ public final class CallbackUtils {
 
             @Override
             public void onUndefined(final UndefinedResult r) {
-                callback.onFailure(new UndefinedException(r));
+                exceptionManager.onUndefined(r);
             }
 
             @Override
