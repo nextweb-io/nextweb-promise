@@ -18,6 +18,7 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleException;
 import io.nextweb.promise.exceptions.ImpossibleResult;
 import io.nextweb.promise.exceptions.UnauthorizedException;
+import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedException;
 import io.nextweb.promise.exceptions.UndefinedResult;
@@ -136,18 +137,32 @@ public final class CallbackUtils {
             final ValueCallback<ResultType> callback) {
 
         final DataExceptionManager exceptionManager = new DataExceptionManager(manager);
-        // exceptionManager.onFailure(r);
+        exceptionManager.catchExceptions(new ExceptionListener() {
+
+            @Override
+            public void onFailure(final ExceptionResult r) {
+                callback.onFailure(r.exception());
+            }
+        });
+        exceptionManager.catchUnauthorized(new UnauthorizedListener() {
+
+            @Override
+            public void onUnauthorized(final UnauthorizedResult r) {
+                callback.onFailure(new UnauthorizedException(r));
+            }
+        });
 
         return new DataCallback<ResultType>() {
 
             @Override
             public void onFailure(final ExceptionResult r) {
-                exceptionManager.onFailure(r.exception());
+                exceptionManager.onFailure(r);
+                // exceptionManager.triggerFailure(r.exception());
             }
 
             @Override
             public void onUnauthorized(final UnauthorizedResult r) {
-                callback.onFailure(new UnauthorizedException(r));
+                exceptionManager.onUnauthorized(r);
             }
 
             @Override
@@ -193,7 +208,7 @@ public final class CallbackUtils {
             @Override
             public DataExceptionManager getExceptionManager() {
 
-                return manager;
+                return exceptionManager;
 
             }
 
