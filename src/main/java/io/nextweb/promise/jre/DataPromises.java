@@ -40,13 +40,13 @@ public final class DataPromises {
         final DataPromiseImpl<ResultType> impl = new DataPromiseImpl<ResultType>(operation, promise,
                 new DataExceptionManager(null));
 
-        // promise.addExceptionFallback(new Closure<Throwable>() {
-        //
-        // @Override
-        // public void apply(final Throwable o) {
-        // exceptionManager.onFailure(Fn.exception(this, o));
-        // }
-        // });
+         promise.addExceptionFallback(new Closure<Throwable>() {
+        
+         @Override
+         public void apply(final Throwable o) {
+         exceptionManager.onFailure(Fn.exception(this, o));
+         }
+         });
         return impl;
 
     }
