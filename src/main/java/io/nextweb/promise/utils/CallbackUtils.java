@@ -16,6 +16,7 @@ import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleException;
+import io.nextweb.promise.exceptions.ImpossibleListener;
 import io.nextweb.promise.exceptions.ImpossibleResult;
 import io.nextweb.promise.exceptions.UnauthorizedException;
 import io.nextweb.promise.exceptions.UnauthorizedListener;
@@ -161,12 +162,19 @@ public final class CallbackUtils {
             }
         });
 
+        exceptionManager.catchImpossible(new ImpossibleListener() {
+
+            @Override
+            public void onImpossible(final ImpossibleResult ir) {
+                callback.onFailure(new ImpossibleException(ir));
+            }
+        });
+
         return new DataCallback<ResultType>() {
 
             @Override
             public void onFailure(final ExceptionResult r) {
                 exceptionManager.onFailure(r);
-                // exceptionManager.triggerFailure(r.exception());
             }
 
             @Override
@@ -181,7 +189,7 @@ public final class CallbackUtils {
 
             @Override
             public void onImpossible(final ImpossibleResult ir) {
-                callback.onFailure(new ImpossibleException(ir));
+                exceptionManager.onImpossible(ir);
             }
 
             @Override
