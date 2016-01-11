@@ -134,6 +134,8 @@ public final class CallbackUtils {
 
     public static <ResultType> DataCallback<ResultType> asDataCallback(final DataExceptionManager manager,
             final ValueCallback<ResultType> callback) {
+        
+        CallbackUtils.embed(callback, onSuccess)
         return new DataCallback<ResultType>() {
 
             @Override
@@ -189,6 +191,8 @@ public final class CallbackUtils {
 
             @Override
             public DataExceptionManager getExceptionManager() {
+                System.out.println("get exception pamange");
+                new Exception("h").printStackTrace();
                 return manager;
 
             }
