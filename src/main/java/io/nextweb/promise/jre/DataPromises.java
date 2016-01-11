@@ -20,7 +20,7 @@ public final class DataPromises {
         return create(new DataExceptionManager(null), operation);
     }
 
-    public static <ResultType> DataPromise<ResultType> create(final DataExceptionManager exceptionManager,
+    public static <ResultType> DataPromise<ResultType> create(final DataExceptionManager fallbackExceptionManager,
             final DataOperation<ResultType> operation) {
 
         final Promise<ResultType> promise = Promises.create(new Operation<ResultType>() {
@@ -32,7 +32,7 @@ public final class DataPromises {
 
             @Override
             public void apply(final ValueCallback<ResultType> callback) {
-                final DataCallback<ResultType> dataCallback = CallbackUtils.asDataCallback(exceptionManager, callback);
+                final DataCallback<ResultType> dataCallback = CallbackUtils.asDataCallback(fallbackExceptionManager, callback);
 
                 operation.apply(dataCallback);
 
@@ -46,7 +46,7 @@ public final class DataPromises {
 
             @Override
             public void apply(final Throwable o) {
-                exceptionManager.onFailure(Fn.exception(this, o));
+                fallbackExceptionManager.onFailure(Fn.exception(this, o));
             }
         });
         return impl;
