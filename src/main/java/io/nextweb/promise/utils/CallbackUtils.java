@@ -135,11 +135,14 @@ public final class CallbackUtils {
     public static <ResultType> DataCallback<ResultType> asDataCallback(final DataExceptionManager manager,
             final ValueCallback<ResultType> callback) {
 
+        final DataExceptionManager exceptionManager = new DataExceptionManager(manager);
+        // exceptionManager.onFailure(r);
+
         return new DataCallback<ResultType>() {
 
             @Override
             public void onFailure(final ExceptionResult r) {
-                callback.onFailure(r.exception());
+                exceptionManager.onFailure(r.exception());
             }
 
             @Override
@@ -159,7 +162,6 @@ public final class CallbackUtils {
 
             @Override
             public void onSuccess(final ResultType result) {
-                // System.out.println(this);
                 callback.onSuccess(result);
             }
 
