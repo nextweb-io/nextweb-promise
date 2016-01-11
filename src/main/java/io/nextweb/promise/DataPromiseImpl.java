@@ -113,6 +113,13 @@ public class DataPromiseImpl<ResultType> implements DataPromise<ResultType> {
         this.promise = promise;
         this.exceptionManager = exceptionManager;
 
+        promise.addExceptionFallback(new Closure<Throwable>() {
+
+            @Override
+            public void apply(final Throwable o) {
+                exceptionManager.onFailure(Fn.exception(this, o));
+            }
+        });
     }
 
     @Override
