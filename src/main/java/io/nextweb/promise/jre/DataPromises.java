@@ -2,14 +2,12 @@ package io.nextweb.promise.jre;
 
 import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
-import delight.functional.Closure;
 import delight.promise.Promise;
 import delight.promise.jre.Promises;
 
 import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.DataPromiseImpl;
-import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.utils.CallbackUtils;
@@ -42,13 +40,13 @@ public final class DataPromises {
         final DataPromiseImpl<ResultType> impl = new DataPromiseImpl<ResultType>(operation, promise,
                 new DataExceptionManager(null));
 
-        promise.addExceptionFallback(new Closure<Throwable>() {
-
-            @Override
-            public void apply(final Throwable o) {
-                exceptionManager.onFailure(Fn.exception(this, o));
-            }
-        });
+        // promise.addExceptionFallback(new Closure<Throwable>() {
+        //
+        // @Override
+        // public void apply(final Throwable o) {
+        // exceptionManager.onFailure(Fn.exception(this, o));
+        // }
+        // });
         return impl;
 
     }
