@@ -9,7 +9,6 @@ import delight.promise.jre.Promises;
 import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.DataPromiseImpl;
-import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.utils.CallbackUtils;
@@ -47,8 +46,9 @@ public final class DataPromises {
 
             @Override
             public void apply(final Throwable o) {
-                System.out.println("got exception " + o.getClass());
-                exceptionManager.onFailure(Fn.exception(this, o));
+
+                CallbackUtils.triggerDataFailureCallback(o, exceptionManager);
+
             }
         });
         return impl;
