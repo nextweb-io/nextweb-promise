@@ -11,6 +11,7 @@ import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.callbacks.DataCallback;
+import io.nextweb.promise.callbacks.DataFailureCallback;
 import io.nextweb.promise.callbacks.EmbeddedCallback;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -98,33 +99,38 @@ public final class CallbackUtils {
         return res;
     }
 
+    public static final void triggerDataFailureCallback(final Throwable t, final DataFailureCallback callback) {
+        if (t instanceof UnauthorizedException) {
+            final UnauthorizedException unauthorizedException = (UnauthorizedException) t;
+            callback.onUnauthorized(unauthorizedException.getResult());
+            return;
+        }
+
+        if (t instanceof UndefinedException) {
+
+            final UndefinedException undefinedException = (UndefinedException) t;
+            callback.onUndefined(undefinedException.getResult());
+            return;
+        }
+
+        if (t instanceof ImpossibleException) {
+
+            final ImpossibleException impossibleException = (ImpossibleException) t;
+            callback.onImpossible(impossibleException.getResult());
+            return;
+        }
+
+        callback.onFailure(Fn.exception(CallbackUtils.class, t));
+    }
+
     public static final <T> ValueCallback<T> asValueCallback(final DataCallback<T> callback) {
         return new ValueCallback<T>() {
 
             @Override
             public void onFailure(final Throwable t) {
 
-                if (t instanceof UnauthorizedException) {
-                    final UnauthorizedException unauthorizedException = (UnauthorizedException) t;
-                    callback.onUnauthorized(unauthorizedException.getResult());
-                    return;
-                }
+                triggerDataFailureCallback(t, callback);
 
-                if (t instanceof UndefinedException) {
-
-                    final UndefinedException undefinedException = (UndefinedException) t;
-                    callback.onUndefined(undefinedException.getResult());
-                    return;
-                }
-
-                if (t instanceof ImpossibleException) {
-
-                    final ImpossibleException impossibleException = (ImpossibleException) t;
-                    callback.onImpossible(impossibleException.getResult());
-                    return;
-                }
-
-                callback.onFailure(Fn.exception(this, t));
             }
 
             @Override
