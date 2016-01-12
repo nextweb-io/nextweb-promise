@@ -47,6 +47,7 @@ public final class DataPromises {
 
             @Override
             public void apply(final Throwable o) {
+                System.out.println("got exception " + o.getClass());
                 exceptionManager.onFailure(Fn.exception(this, o));
             }
         });
