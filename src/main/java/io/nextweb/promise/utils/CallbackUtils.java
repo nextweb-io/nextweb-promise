@@ -100,6 +100,7 @@ public final class CallbackUtils {
     }
 
     public static final void triggerDataFailureCallback(final Throwable t, final DataFailureCallback callback) {
+
         if (t instanceof UnauthorizedException) {
             final UnauthorizedException unauthorizedException = (UnauthorizedException) t;
             callback.onUnauthorized(unauthorizedException.getResult());
