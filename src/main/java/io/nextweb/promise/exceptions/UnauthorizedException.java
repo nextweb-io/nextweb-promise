@@ -6,6 +6,12 @@ public class UnauthorizedException extends Throwable {
 
     private final UnauthorizedResult result;
 
+    @Override
+    public String getMessage() {
+
+        return result.getMessage();
+    }
+
     public UnauthorizedException(final UnauthorizedResult result) {
         super();
         this.result = result;
