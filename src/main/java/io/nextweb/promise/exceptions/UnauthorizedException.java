@@ -21,4 +21,9 @@ public class UnauthorizedException extends Throwable {
         this.result = result;
     }
 
+    public UnauthorizedException() {
+        super();
+        this.result = null;
+    }
+
 }
