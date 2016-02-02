@@ -27,4 +27,9 @@ public class ImpossibleException extends Throwable {
         return result.message();
     }
 
+    public ImpossibleException() {
+        super();
+        result = null;
+    }
+
 }

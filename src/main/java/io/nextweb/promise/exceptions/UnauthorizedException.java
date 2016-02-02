@@ -12,13 +12,13 @@ public class UnauthorizedException extends Throwable {
         return result.getMessage();
     }
 
+    public UnauthorizedResult getResult() {
+        return result;
+    }
+
     public UnauthorizedException(final UnauthorizedResult result) {
         super();
         this.result = result;
-    }
-
-    public UnauthorizedResult getResult() {
-        return result;
     }
 
 }
