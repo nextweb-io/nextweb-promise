@@ -12,13 +12,18 @@ public class UndefinedException extends Throwable {
         return result.message();
     }
 
+    public UndefinedResult getResult() {
+        return result;
+    };
+
     public UndefinedException(final UndefinedResult result) {
         super();
         this.result = result;
     }
 
-    public UndefinedResult getResult() {
-        return result;
-    };
+    public UndefinedException() {
+        super();
+        this.result = null;
+    }
 
 }
