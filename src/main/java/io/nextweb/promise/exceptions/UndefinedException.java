@@ -4,7 +4,7 @@ public class UndefinedException extends Throwable {
 
     private static final long serialVersionUID = 1L;
 
-    private final UndefinedResult result;
+    public UndefinedResult result;
 
     @Override
     public String getMessage() {
