@@ -6,6 +6,8 @@ import io.nextweb.promise.exceptions.UndefinedResult;
 
 public class UndefinedResultData implements UndefinedResult, Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public String message;
 
     public transient Object origin;

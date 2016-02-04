@@ -8,9 +8,15 @@ public class UnauthorizedResultData implements UnauthorizedResult, Serializable 
 
     private static final long serialVersionUID = 1L;
 
+    public String message;
+    public transient Object origin;
+    public String originClass;
+
     @Override
     public Object origin() {
-        // TODO Auto-generated method stub
+        if (origin != null) {
+            return origin;
+        }
         return null;
     }
 
