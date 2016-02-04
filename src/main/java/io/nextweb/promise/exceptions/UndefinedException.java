@@ -17,7 +17,9 @@ public class UndefinedException extends Throwable {
 
     public UndefinedException(final UndefinedResult result) {
         super();
-        assert result != null;
+        if (result == null) {
+            throw new NullPointerException("Result should not be null.");
+        }
         this.result = result;
     }
 
