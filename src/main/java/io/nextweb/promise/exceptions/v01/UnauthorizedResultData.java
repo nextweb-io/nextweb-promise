@@ -42,6 +42,10 @@ public class UnauthorizedResultData implements UnauthorizedResult, Serializable 
         this.type = type;
     }
 
+    public UnauthorizedResultData(final UnauthorizedResult result) {
+
+    }
+
     @Deprecated
     public UnauthorizedResultData() {
         super();
