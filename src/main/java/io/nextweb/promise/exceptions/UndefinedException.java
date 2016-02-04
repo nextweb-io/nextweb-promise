@@ -1,10 +1,12 @@
 package io.nextweb.promise.exceptions;
 
+import io.nextweb.promise.exceptions.v01.UndefinedResultData;
+
 public class UndefinedException extends Throwable {
 
     private static final long serialVersionUID = 1L;
 
-    public transient UndefinedResult result;
+    public UndefinedResultData result;
 
     @Override
     public String getMessage() {
@@ -20,7 +22,7 @@ public class UndefinedException extends Throwable {
         if (result == null) {
             throw new NullPointerException("Result should not be null.");
         }
-        this.result = result;
+        this.result = new UndefinedResultData(result);
     }
 
     /**
