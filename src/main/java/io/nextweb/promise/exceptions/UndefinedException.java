@@ -8,7 +8,6 @@ public class UndefinedException extends Throwable {
 
     @Override
     public String getMessage() {
-
         return result.message();
     }
 
@@ -21,6 +20,10 @@ public class UndefinedException extends Throwable {
         this.result = result;
     }
 
+    /**
+     * Use only for serialization.
+     */
+    @Deprecated
     public UndefinedException() {
         super();
         this.result = null;
