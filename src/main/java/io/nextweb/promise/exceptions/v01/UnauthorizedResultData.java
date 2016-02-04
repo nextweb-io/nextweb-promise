@@ -19,7 +19,7 @@ public class UnauthorizedResultData implements UnauthorizedResult, Serializable 
         if (origin != null) {
             return origin;
         }
-        return null;
+        return originClass;
     }
 
     @Override
@@ -34,16 +34,16 @@ public class UnauthorizedResultData implements UnauthorizedResult, Serializable 
         return type;
     }
 
-    public UnauthorizedResultData(final String message, final Object origin, final Serializable type) {
+    public UnauthorizedResultData(final String message, final Object origin, final Object type) {
         super();
         this.message = message;
         this.origin = origin;
         this.originClass = origin.getClass().toString() + "->" + origin.toString();
-        this.type = type;
+        this.type = (Serializable) type;
     }
 
     public UnauthorizedResultData(final UnauthorizedResult result) {
-
+        this(result.getMessage(), result.origin(), result.getType());
     }
 
     @Deprecated

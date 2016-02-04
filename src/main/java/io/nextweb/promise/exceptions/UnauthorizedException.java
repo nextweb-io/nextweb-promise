@@ -1,10 +1,12 @@
 package io.nextweb.promise.exceptions;
 
+import io.nextweb.promise.exceptions.v01.UnauthorizedResultData;
+
 public class UnauthorizedException extends Throwable {
 
     private static final long serialVersionUID = 1L;
 
-    private final UnauthorizedResult result;
+    public UnauthorizedResultData result;
 
     @Override
     public String getMessage() {
@@ -20,7 +22,7 @@ public class UnauthorizedException extends Throwable {
         super();
         assert result != null;
 
-        this.result = result;
+        this.result = new UnauthorizedResultData(result);
     }
 
     /**

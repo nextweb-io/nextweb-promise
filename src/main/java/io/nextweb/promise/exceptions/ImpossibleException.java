@@ -1,5 +1,7 @@
 package io.nextweb.promise.exceptions;
 
+import io.nextweb.promise.exceptions.v01.ImpossibleResultData;
+
 /**
  * <p>
  * When a modifying statement cannot be executed on the network.
@@ -11,7 +13,7 @@ public class ImpossibleException extends Throwable {
 
     private static final long serialVersionUID = 1L;
 
-    private final ImpossibleResult result;
+    public ImpossibleResultData result;
 
     public ImpossibleResult getResult() {
         return result;
@@ -26,7 +28,7 @@ public class ImpossibleException extends Throwable {
         super();
         assert result != null;
 
-        this.result = result;
+        this.result = new ImpossibleResultData(result);
     }
 
     /**
