@@ -12,6 +12,8 @@ public class UnauthorizedResultData implements UnauthorizedResult, Serializable 
     public transient Object origin;
     public String originClass;
 
+    public Serializable type;
+
     @Override
     public Object origin() {
         if (origin != null) {
@@ -22,14 +24,20 @@ public class UnauthorizedResultData implements UnauthorizedResult, Serializable 
 
     @Override
     public String getMessage() {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Object getType() {
-        // TODO Auto-generated method stub
-        return null;
+
+        return type;
+    }
+
+    @Deprecated
+    public UnauthorizedResultData() {
+        super();
+
     }
 
 }
