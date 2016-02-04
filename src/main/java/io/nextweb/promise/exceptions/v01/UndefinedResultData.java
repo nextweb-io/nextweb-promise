@@ -30,7 +30,7 @@ public class UndefinedResultData implements UndefinedResult, Serializable {
         super();
         this.message = message;
         this.origin = origin;
-        this.originClass = origin.getClass().toString();
+        this.originClass = origin.getClass().toString() + "->" + origin.toString();
     }
 
     public UndefinedResultData(final UndefinedResult result) {
