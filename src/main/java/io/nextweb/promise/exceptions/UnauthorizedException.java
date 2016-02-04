@@ -18,6 +18,8 @@ public class UnauthorizedException extends Throwable {
 
     public UnauthorizedException(final UnauthorizedResult result) {
         super();
+        assert result != null;
+
         this.result = result;
     }
 

@@ -17,6 +17,7 @@ public class UndefinedException extends Throwable {
 
     public UndefinedException(final UndefinedResult result) {
         super();
+        assert result != null;
         this.result = result;
     }
 

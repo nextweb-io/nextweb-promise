@@ -24,6 +24,8 @@ public class ImpossibleException extends Throwable {
 
     public ImpossibleException(final ImpossibleResult result) {
         super();
+        assert result != null;
+
         this.result = result;
     }
 
