@@ -13,11 +13,6 @@ public class ImpossibleException extends Throwable {
 
     private final ImpossibleResult result;
 
-    public ImpossibleException(final ImpossibleResult result) {
-        super();
-        this.result = result;
-    }
-
     public ImpossibleResult getResult() {
         return result;
     }
@@ -27,6 +22,15 @@ public class ImpossibleException extends Throwable {
         return result.message();
     }
 
+    public ImpossibleException(final ImpossibleResult result) {
+        super();
+        this.result = result;
+    }
+
+    /**
+     * Use only for serialization.
+     */
+    @Deprecated
     public ImpossibleException() {
         super();
         result = null;

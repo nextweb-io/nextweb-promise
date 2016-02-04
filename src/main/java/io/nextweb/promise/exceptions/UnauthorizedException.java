@@ -21,6 +21,10 @@ public class UnauthorizedException extends Throwable {
         this.result = result;
     }
 
+    /**
+     * Use only for serialization.
+     */
+    @Deprecated
     public UnauthorizedException() {
         super();
         this.result = null;
