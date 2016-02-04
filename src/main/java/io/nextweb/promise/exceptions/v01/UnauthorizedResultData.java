@@ -25,13 +25,21 @@ public class UnauthorizedResultData implements UnauthorizedResult, Serializable 
     @Override
     public String getMessage() {
 
-        return null;
+        return message;
     }
 
     @Override
     public Object getType() {
 
         return type;
+    }
+
+    public UnauthorizedResultData(final String message, final Object origin, final Serializable type) {
+        super();
+        this.message = message;
+        this.origin = origin;
+        this.originClass = origin.getClass().toString() + "->" + origin.toString();
+        this.type = type;
     }
 
     @Deprecated
