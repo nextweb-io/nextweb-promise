@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>io.nextweb.promise</groupId>
 	<artifactId>nextweb-promise</artifactId>
 	<version>0.1.3-SNAPSHOT</version>
@@ -30,8 +32,11 @@
 			<artifactId>delight-promise</artifactId>
 			<version>0.0.3</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>org.javadelight</groupId>
+			<artifactId>delight-simple-log</artifactId>
+			<version>[0.0.1,)</version>
+		</dependency>
 		<dependency>
 			<groupId>de.mxro.service</groupId>
 			<artifactId>service-api</artifactId>
@@ -220,8 +225,8 @@
 						</goals>
 						<configuration>
 							<tasks>
-								<delete file="${basedir}/META-INF/MANIFEST.MF"/>
-								<copy file="target/classes/META-INF/MANIFEST.MF" tofile="${basedir}/META-INF/MANIFEST.MF"/>
+								<delete file="${basedir}/META-INF/MANIFEST.MF" />
+								<copy file="target/classes/META-INF/MANIFEST.MF" tofile="${basedir}/META-INF/MANIFEST.MF" />
 							</tasks>
 						</configuration>
 					</execution>
@@ -275,7 +280,7 @@
 									<link>http://modules.appjangle.com/delight-promise/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/delight-strings/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/delight-functional/latest/apidocs/</link>
-									
+
 									<link>http://modules.appjangle.com/nextweb-promise/latest/apidocs/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/nextweb-promise-js/latest/apidocs/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/java-promise/latest/apidocs/latest/apidocs/</link>

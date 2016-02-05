@@ -5,6 +5,8 @@
 	
 	<inherits name="delight.functional.Fn" />
 	
+	<inherits name="delight.simplelog.Module" />
+	
 	<inherits name="delight.promise.Promise" />
 	
 	<inherits name="delight.factories.Factories" />

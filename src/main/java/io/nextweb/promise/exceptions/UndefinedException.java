@@ -22,7 +22,12 @@ public class UndefinedException extends Throwable {
         if (result == null) {
             throw new NullPointerException("Result should not be null.");
         }
-        this.result = new UndefinedResultData(result);
+        if (result instanceof UndefinedResultData) {
+            this.result = (UndefinedResultData) result;
+        } else {
+
+            this.result = new UndefinedResultData(result);
+        }
     }
 
     /**
