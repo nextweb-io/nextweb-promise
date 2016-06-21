@@ -6,7 +6,7 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import io.nextweb.promise.exceptions.v01.UndefinedResultData;
 
-public class Fn {
+public final class Fn {
 
     public static final ExceptionResult exception(final Object origin, final Throwable t) {
         return new ExceptionResult() {
