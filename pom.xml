@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>org.javadelight</groupId>
 			<artifactId>delight-promise</artifactId>
-			<version>0.0.3</version>
+			<version>[0.0.1,)</version>
 		</dependency>
 		<dependency>
 			<groupId>org.javadelight</groupId>
