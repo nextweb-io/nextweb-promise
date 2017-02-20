@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>org.javadelight</groupId>
 			<artifactId>delight-simple-log</artifactId>
-			<version>[0.0.1,)</version>
+			<version>0.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>de.mxro.service</groupId>
