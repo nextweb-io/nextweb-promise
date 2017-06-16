@@ -1,9 +1,10 @@
 package io.nextweb.promise;
 
 import delight.functional.Closure;
-
 import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedResult;
+import io.nextweb.promise.exceptions.v01.UnauthorizedResultData;
 import io.nextweb.promise.exceptions.v01.UndefinedResultData;
 
 public final class Fn {
@@ -31,6 +32,13 @@ public final class Fn {
         // message));
 
         return new UndefinedResultData(message, origin);
+    }
+    
+    public static final UnauthorizedResult unauthorized(final Object origin, final String message, final String type) {
+
+        
+
+        return new UnauthorizedResultData(message, origin, type);
     }
 
     public static <G> Closure<G> doNothing(final Class<G> inputType) {
